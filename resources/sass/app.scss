@@ -1,0 +1,15 @@
+// Import Bootstrap
+
+@import "~bootstrap/scss/bootstrap";
+
+// Custom styles
+body[data-bs-theme="dark"] {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body[data-bs-theme="dark"] .btn-primary {
+    background-color: #1a73e8;
+    border-color: #1a73e8;
+}
+

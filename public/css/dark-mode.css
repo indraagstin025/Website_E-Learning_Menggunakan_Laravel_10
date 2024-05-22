@@ -1,0 +1,38 @@
+/* Default (Light Mode) */
+body {
+    background-color: #f8f9fc; 
+    color: #5a5c69; 
+}
+.navbar {
+    background-color: #fff; 
+}
+.sidebar {
+    background-color: #62646c; 
+}
+.card {
+    background-color: #fff; 
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #212529; /* Warna latar belakang body gelap */
+    color: #fff; /* Warna teks utama terang */
+}
+
+body.dark-mode .navbar {
+    background-color: #343a40; /* Warna latar belakang navbar gelap */
+}
+
+body.dark-mode .sidebar {
+    background-color: #343a40; /* Warna latar belakang sidebar gelap */
+}
+
+body.dark-mode .card {
+    background-color: #495057; /* Warna latar belakang card gelap */
+    color: #fff;
+}
+
+/* Tambahkan aturan CSS lain untuk elemen-elemen lain sesuai kebutuhan */
+.dark-mode .bg-gradient-primary {
+    background-color: #343a40 !important; /* Warna latar belakang sidebar gelap */
+}
