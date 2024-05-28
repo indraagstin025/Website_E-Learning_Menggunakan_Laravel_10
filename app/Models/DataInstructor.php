@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataMahasiswa extends Model
+class DataInstructor extends Model
 {
     use HasFactory;
-    public $table = 'datamahasiswa';
+    public $table = 'datainstructor';
     public $fillable = [
         'user_id',
         'name',
         'email',
-        'nim',
-        'angkatan',
-        'jurusan',
+        'nidn',
+        'program_studi',
         'nama_lengkap',
         'tanggal_lahir',
         'profile_completed',

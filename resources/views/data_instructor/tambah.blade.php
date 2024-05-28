@@ -1,4 +1,3 @@
-<!-- Custom styles for this page -->
 @extends('halaman_dashboard.index')
 @if (Auth::user()->role === 'admin')
     @section('navitem')
@@ -7,7 +6,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/admin">
+            <a class="nav-link" href="index.html">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -73,7 +72,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
+                    <a class="collapse-item" href="{{ route('datainstructor') }}">Data Instructor</a>
                     <a class="collapse-item" href="login.html">Login</a>
                     <a class="collapse-item" href="register.html">Register</a>
                     <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
@@ -107,14 +106,14 @@
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     @endsection
-@elseif(Auth::user()->role === 'user')
+@elseif(Auth::user()->role === 'instructor')
     @section('navitem')
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/user">
+            <a class="nav-link" href="index.html">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -180,7 +179,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
+                    <a class="collapse-item" href="{{ route('datainstructor') }}">Data Instructor</a>
                     <a class="collapse-item" href="login.html">Login</a>
                     <a class="collapse-item" href="register.html">Register</a>
                     <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
@@ -216,24 +215,10 @@
     @endsection
 @endif
 @section('main')
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Data Mahasiswa</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p>
-
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary mb-4">DataTables Example</h6>
-
-                {{-- new --}}
-            
-                <a href="/damatambah" class="btn-sm btn-primary text-decoration-none">Tambah data</a>
-
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Tambah data Instructor</h4>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -243,96 +228,32 @@
                         </ul>
                     </div>
                 @endif
-            
-                @if (Session::has('success'))
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire(
-                                'Sukses',
-                                '{{ Session::get('success') }}',
-                                'success'
-                            );
-                        });
-                    </script>
-                @endif
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Nim</th>
-                                <th>Angkatan</th>
-                                <th>Jurusan</th>
-                                <th>Nama Lengkap</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Nim</th>
-                                <th>Angkatan</th>
-                                <th>Jurusan</th>
-                                <th>Nama Lengkap</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->nim }}</td>
-                                    <td>{{ $item->angkatan }}</td>
-                                    <td>{{ $item->jurusan }}</td>
-                                    <td>{{ $item->nama_lengkap }}</td>
-                                    <td>{{ $item->tanggal_lahir }}</td>
-
-                                    <td><a href="/damaedit/{{ $item->id }}"
-                                            class="btn-sm btn-warning text-decoration-none">Edit</a> |
-                                        <form onsubmit="return confirmHapus(event)"
-                                            action="/damahapus/{{ $item->id }}" method="post" class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <form class="forms-sample" method="post" action="/tambahdatainstructor" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nama">Name</label>
+                        <input type="text" class="form-control" id="nama" placeholder="Kevin Example"
+                            name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" placeholder="kevin@example.com"
+                            name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nidn">Nidn</label>
+                        <input type="number" class="form-control" id="nidn" placeholder="22020000" name="nidn"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="program_studi">Program Studi</label>
+                        <input type="text" class="form-control" id="program_studi" placeholder="TeknikInformatika" name="program_studi"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                    <a href="/datainstructor" class="btn btn-light">Kembali</a>
+                </form>
             </div>
         </div>
-
     </div>
-    <!-- /.container-fluid -->
 @endsection
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-    function confirmHapus(event) {
-        event.preventDefault(); // Menghentikan form dari pengiriman langsung
-
-        Swal.fire({
-            title: 'Yakin Hapus Data?',
-            text: "Data yang dihapus tidak dapat dikembalikan!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Hapus',
-            cancelButtonText: 'Batal'
-        }).then((willDelete) => {
-            if (willDelete.isConfirmed) {
-                event.target.submit(); // Melanjutkan pengiriman form
-            } else {
-                swal('Your imaginary file is safe!');
-            }
-        });
-    }
-</script>

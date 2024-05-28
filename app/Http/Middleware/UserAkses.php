@@ -15,9 +15,17 @@ class UserAkses
      */
     public function handle(Request $request, Closure $next, $role): Response
     {
+        // Pastikan pengguna terautentikasi
+        if (!auth()->check()) {
+            return redirect('/login')->withErrors("Anda harus login terlebih dahulu.");
+        }
+
+        // Periksa apakah role pengguna sesuai
         if (auth()->user()->role === $role) {
             return $next($request);
         }
+
+        // Arahkan pengguna ke halaman sesuai dengan role mereka
         $url = "/" . auth()->user()->role;
         return redirect($url)->withErrors("Anda tidak dapat mengakses halaman ini.");
     }

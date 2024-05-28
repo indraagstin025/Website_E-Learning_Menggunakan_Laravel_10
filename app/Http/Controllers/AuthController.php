@@ -33,12 +33,17 @@ class AuthController extends Controller
 
         if (Auth::attempt($infologin)) {
             if (Auth::user()->email_verified_at != null) {
-                if (Auth::user()->role === 'admin') {
-                    return redirect()->route('admin')->with('success', 'Halo Admin , Anda berhasil login');
-                } else if (Auth::user()->role === 'user') {
-                    return redirect()->route('user')->with('success', 'Berhasil login');
-                } 
-                
+                switch (Auth::user()->role) {
+                    case 'admin':
+                        return redirect()->route('admin')->with('success', 'Halo Admin, Anda berhasil login');
+                    case 'user':
+                        return redirect()->route('user')->with('success', 'Berhasil login');
+                    case 'instructor':
+                        return redirect()->route('instructor')->with('success', 'Berhasil login');
+                    default:
+                        Auth::logout();
+                        return redirect()->route('auth')->withErrors('Role tidak dikenal');
+                }
             } else {
                 Auth::logout();
                 return redirect()->route('auth')->withErrors('Akun anda belum Aktif. Harap Verifikasi terlebih dahulu');
@@ -46,6 +51,7 @@ class AuthController extends Controller
         } else {
             return redirect()->route('auth')->withErrors('Email atau password salah');
         }
+    
     }
     function create()
     {
@@ -82,14 +88,15 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'gambar' => $nama_gambar,
-            'verify_key' => $str
+            'verify_key' => $str,
+            'role' => 'user'
         ];
 
         User::create($inforegister);
 
         $details = [
             'nama' => $inforegister['fullname'],
-            'role' => 'user'. 'dosen',
+            'role' => 'user',
             'datetime' => date('Y-m-d H:i:s'),
             'website' => 'Learning Management System',
             'url' => 'http://' . request()->getHttpHost() . "/" . "verify/" . $inforegister['verify_key'],

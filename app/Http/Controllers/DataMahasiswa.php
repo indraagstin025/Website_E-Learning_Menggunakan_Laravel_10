@@ -8,96 +8,115 @@ use Illuminate\Support\Facades\Session;
 
 class DataMahasiswa extends Controller
 {
-    function index()
+    public function index()
     {
         $data = ModelsDataMahasiswa::all();
         return view('data_mahasiswa.index', ['data' => $data]);
     }
-    function tambah()
+
+    public function tambah()
     {
         return view('data_mahasiswa.tambah');
     }
-    function edit($id)
+
+    public function edit($id)
     {
         $data = ModelsDataMahasiswa::find($id);
-
         return view('data_mahasiswa.edit', ['data' => $data]);
     }
-    function hapus(Request $request)
+
+    public function hapus(Request $request)
     {
         ModelsDataMahasiswa::where('id', $request->id)->delete();
-
         Session::flash('success', 'Berhasil Hapus Data');
-
         return redirect('/datamahasiswa');
     }
-    // new
-    function create(Request $request)
+
+    // Create new data
+    public function create(Request $request)
     {
         $request->validate([
             'name' => 'required|min:3',
-            'email' => 'required|email',
-            'nim' => 'required|max:8',
-            'angkatan' => 'required|min:2|max:2',
+            'email' => 'required|email|unique:datamahasiswa,email',
+            'nim' => 'required|max:8|unique:datamahasiswa,nim',
+            'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
+            'nama_lengkap' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
         ], [
             'name.required' => 'Name Wajib Di isi',
             'name.min' => 'Bidang name minimal harus 3 karakter.',
             'email.required' => 'Email Wajib Di isi',
             'email.email' => 'Format Email Invalid',
+            'email.unique' => 'Email sudah digunakan',
             'nim.required' => 'Nim Wajib Di isi',
             'nim.max' => 'NIM max 8 Digit',
+            'nim.unique' => 'NIM sudah digunakan',
             'angkatan.required' => 'Angkatan Wajib Di isi',
-            'angkatan.min' => 'Masukan 2 angka Akhir dari Tahun misal: 2022 (22)',
-            'angkatan.max' => 'Masukan 2 angka Akhir dari Tahun misal: 2022 (22)',
+            'angkatan.digits' => 'Masukan tahun angkatan 4 digit, misal: 2022',
             'jurusan.required' => 'Jurusan Wajib Di isi',
+            'nama_lengkap.required' => 'Nama Lengkap Wajib Di isi',
+            'nama_lengkap.max' => 'Nama Lengkap max 255 karakter',
+            'tanggal_lahir.required' => 'Tanggal Lahir Wajib Di isi',
+            'tanggal_lahir.date' => 'Format Tanggal Lahir Invalid',
         ]);
 
-        ModelsDataMahasiswa::insert([
+        ModelsDataMahasiswa::create([
+            'user_id' => auth()->user()->id,
             'name' => $request->name,
             'email' => $request->email,
             'nim' => $request->nim,
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
+            'nama_lengkap' => $request->nama_lengkap,
+            'tanggal_lahir' => $request->tanggal_lahir,
         ]);
 
         Session::flash('success', 'Data berhasil ditambahkan');
-
         return redirect('/datamahasiswa')->with('success', 'Berhasil Menambahkan Data');
     }
-    function change(Request $request)
+
+    public function change(Request $request)
     {
         $request->validate([
             'name' => 'required|min:3',
-            'email' => 'required|email',
-            'nim' => 'required|min:8|max:8',
-            'angkatan' => 'required|min:2|max:2',
+            'email' => 'required|email|unique:datamahasiswa,email,' . $request->id,
+            'nim' => 'required|min:8|max:8|unique:datamahasiswa,nim,' . $request->id,
+            'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
+            'nama_lengkap' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
         ], [
             'name.required' => 'Name Wajib Di isi',
             'name.min' => 'Bidang name minimal harus 3 karakter.',
             'email.required' => 'Email Wajib Di isi',
             'email.email' => 'Format Email Invalid',
+            'email.unique' => 'Email sudah digunakan',
             'nim.required' => 'Nim Wajib Di isi',
-            'nim.max' => 'NIM max 8 Digit',
             'nim.min' => 'NIM min 8 Digit',
+            'nim.max' => 'NIM max 8 Digit',
+            'nim.unique' => 'NIM sudah digunakan',
             'angkatan.required' => 'Angkatan Wajib Di isi',
-            'angkatan.min' => 'Masukan 2 angka Akhir dari Tahun misal: 2022 (22)',
-            'angkatan.max' => 'Masukan 2 angka Akhir dari Tahun misal: 2022 (22)',
+            'angkatan.digits' => 'Masukan tahun angkatan 4 digit, misal: 2022',
             'jurusan.required' => 'Jurusan Wajib Di isi',
+            'nama_lengkap.required' => 'Nama Lengkap Wajib Di isi',
+            'nama_lengkap.max' => 'Nama Lengkap max 255 karakter',
+            'tanggal_lahir.required' => 'Tanggal Lahir Wajib Di isi',
+            'tanggal_lahir.date' => 'Format Tanggal Lahir Invalid',
         ]);
 
         $datamahasiswa = ModelsDataMahasiswa::find($request->id);
-
-        $datamahasiswa->name = $request->name;
-        $datamahasiswa->email = $request->email;
-        $datamahasiswa->nim = $request->nim;
-        $datamahasiswa->angkatan = $request->angkatan;
-        $datamahasiswa->jurusan = $request->jurusan;
-        $datamahasiswa->save();
+        $datamahasiswa->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'nim' => $request->nim,
+            'angkatan' => $request->angkatan,
+            'jurusan' => $request->jurusan,
+            'nama_lengkap' => $request->nama_lengkap,
+            'tanggal_lahir' => $request->tanggal_lahir,
+        ]);
 
         Session::flash('success', 'Berhasil Mengubah Data');
-
         return redirect('/datamahasiswa');
     }
 }

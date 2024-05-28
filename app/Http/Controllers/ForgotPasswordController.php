@@ -99,6 +99,9 @@ class ForgotPasswordController extends Controller
             case 'user':
                 $intendedRoute = 'user.login';
                 break;
+            case 'instructor':
+                $intendedRoute = 'instructor.login';
+                break;
             // Tambahkan case lain jika diperlukan
             default:
                 $intendedRoute = 'login'; // Rute default jika peran tidak dikenali

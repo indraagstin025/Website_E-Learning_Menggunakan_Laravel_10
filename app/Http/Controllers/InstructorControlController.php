@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\AuthMail;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\AuthMail;
+use App\Models\DataInstructor;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class UserControlController extends Controller
+class InstructorControlController extends Controller
 {
+    
     function index()
     {
-        $data = User::whereIn('role', ['user', 'admin', 'instructor'])->get();
-        return view('user_control.index', ['uc' => $data]);
+        $data = DataInstructor::attempt('role')->get();
+        return view('instructor_control.index', ['uc' => $data]);
     }
 
     function tambah()
     {
-        return view('user_control.tambah');
+        return view('instructor_control.tambah');
     }
     function create(Request $request)
     {
@@ -53,7 +54,7 @@ class UserControlController extends Controller
             $gambar = "user.jpeg";
         }
 
-        $accounts = User::create([
+        $accounts = DataInstructor::create([
             'fullname' => $request->fullname,
             'email' => $request->email,
             'password' => $request->password,
@@ -78,8 +79,8 @@ class UserControlController extends Controller
 
     function edit($id)
     {
-        $data = User::where('id', $id)->get();
-        return view('user_control.edit', ['uc' => $data]);
+        $data = DataInstructor::where('id', $id)->get();
+        return view('instructor_control.edit', ['uc' => $data]);
     }
     function change(Request $request)
     {
@@ -96,7 +97,7 @@ class UserControlController extends Controller
 
 
 
-        $user = User::find($request->id);
+        $user = DataInstructor::find($request->id);
 
         if ($request->hasFile('gambar')) {
             $gambar_file = $request->file('gambar');
@@ -112,14 +113,16 @@ class UserControlController extends Controller
 
         Session::flash('success', 'User berhasil diedit');
 
-        return redirect('/usercontrol');
+        return redirect('/instructorcontrol');
     }
     function hapus(Request $request)
     {
-        User::where('id', $request->id)->delete();
+        DataInstructor::where('id', $request->id)->delete();
 
         Session::flash('success', 'Data berhasil dihapus');
 
-        return redirect('/usercontrol');
+        return redirect('/instructorcontrol');
     }
 }
+
+

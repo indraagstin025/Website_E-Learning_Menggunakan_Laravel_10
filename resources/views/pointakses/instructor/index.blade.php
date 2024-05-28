@@ -69,18 +69,19 @@
         <span>Pages</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header" style="color: black;">Login Screens:</h6>
-                <a class="collapse-item" href="login.html" style="color: black;">Login</a>
-                <a class="collapse-item" href="register.html" style="color: black;">Register</a>
-                <a class="collapse-item" href="forgot-password.html" style="color: black;">Forgot Password</a>
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header" style="color: black;">Other Pages:</h6>
-                <a class="collapse-item" href="404.html" style="color: black;">404 Page</a>
-                <a class="collapse-item" href="blank.html" style="color: black;">Blank Page</a>
-            </div>
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header" style="color: black;">Login Screens:</h6>
+            <a class="collapse"></a>
+            <a class="collapse-item" href="login.html" style="color: black;">Login</a>
+            <a class="collapse-item" href="register.html" style="color: black;">Register</a>
+            <a class="collapse-item" href="forgot-password.html" style="color: black;">Forgot Password</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header" style="color: black;">Other Pages:</h6>
+            <a class="collapse-item" href="404.html" style="color: black;">404 Page</a>
+            <a class="collapse-item" href="blank.html" style="color: black;">Blank Page</a>
         </div>
-    </li>
+    </div>
+</li>
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">

@@ -3,7 +3,6 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataMahasiswa;
-use App\Http\Controllers\DosenController;
 use App\Http\Controllers\UserControlController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UproleController;
@@ -14,8 +13,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\ForgotPasswordController;
-use App\Models\DataDosen;
-use App\Http\Controllers\DosenControlController;
+use App\Http\Controllers\DataInstructor;
+use App\Http\Controllers\InstructorController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,10 +54,10 @@ Route::get('user/login', [UserController::class, 'showLoginForm'])->name('user.l
 Route::post('user/login', [UserController::class, 'login'])->name('user.login.post');
 Route::post('user/logout', [UserController::class, 'logout'])->name('user.logout');
 
-//Route untuk Dosen
-//Route::get('dosen/login', [DosenController::class, 'showLoginForm'])->name('dosen.login');
-//Route::post('dosen/login', [DosenController::class, 'login'])->name('dosen.login.post');
-//Route::post('dosen/logout', [DosenController::class, 'logout'])->name('dosen.logout.post');
+Route::get('instructor/login', [InstructorController::class, 'showLoginForm'])->name('instructor.login');
+Route::post('instructor/login', [InstructorController::class, 'login'])->name('instructor.login.post');
+Route::post('instructor/logout', [InstructorController::class, 'logout'])->name('instructor.logout');
+
 
 // Routes untuk forgot password (umum untuk admin dan user)
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('password.request');
@@ -69,17 +70,26 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::redirect('/home', '/user, /dosen');
+    Route::redirect('/home', '/user');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('userAkses:admin');
     Route::get('/user', [UserController::class, 'index'])->name('user')->middleware('userAkses:user');
-    
+    Route::get('/instructor', [InstructorController::class, 'index'])->name('instructor')->middleware('userAkses:instructor');
 
     Route::get('/datamahasiswa', [DataMahasiswa::class, 'index'])->name('datamahasiswa');
     Route::get('/damatambah', [DataMahasiswa::class, 'tambah']);
     Route::get('/damaedit/{id}', [DataMahasiswa::class, 'edit']);
     Route::post('/damahapus/{id}', [DataMahasiswa::class, 'hapus']);
 
-    
+   
+
+    Route::get('/datainstructor', [DataInstructor::class, 'index'])->name('datainstructor');
+    Route::get('/tambahdatainstructor', [DataInstructor::class, 'tambah']);
+    Route::get('/editdatainstructor/{id}', [DataInstructor::class, 'edit']);
+    Route::post('/hapusdatainstructor/{id}', [DataInstructor::class, 'hapus']);
+
+    Route::post('/tambahdatainstructor', [DataInstructor::class, 'create']);
+    Route::post('/editdata', [DataInstructor::class, 'change']);
+
 
 
     Route::get('/usercontrol', [UserControlController::class, 'index'])->name('usercontrol');
@@ -97,10 +107,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/edituc', [UserControlController::class, 'change']);
 
     Route::post('/uprole/{id}', [UproleController::class, 'index']);
+    Route::put('/uprole/{id}', [UproleController::class, 'update'])->name('uprole.update');
 
 
-   
 
+ // routes/web.php
+
+ 
+
+    
+    
     
     Route::post('/tambahuc', [UserControlController::class, 'create']);
     Route::post('/edituc', [UserControlController::class, 'change']);

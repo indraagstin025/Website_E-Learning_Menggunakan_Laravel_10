@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datamahasiswa', function (Blueprint $table) {
+        Schema::create('datainstructor', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('nim')->unique();
-            $table->year('angkatan');
-            $table->string('jurusan');
-            $table->unsignedBigInteger('user_id')->nullable(); 
+            $table->integer('nidn')->length(10)->default(0);
+            $table->string('program_studi');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('nama_lengkap')->nullable();
             $table->date('tanggal_lahir')->nullable();
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datamahasiswa');
+        Schema::dropIfExists('datainstructor');
     }
 };

@@ -71,7 +71,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
+                <a class="collapse-item" href="{{ route('datainstructor') }}">Data Instructor</a>
                 <a class="collapse-item" href="login.html">Login</a>
                 <a class="collapse-item" href="register.html">Register</a>
                 <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
@@ -168,42 +168,42 @@
                             </tr>
                         </thead>
                         @foreach ($uc as $item)
-                            <tbody>
+                        <tbody>
+                            <tr>
                                 <td class="py-1">
-                                    <img src="{{ asset('picture/accounts') }}/{{ $item->gambar }}" alt="image" height="50" width="50"/>
+                                    <img src="{{ asset('picture/accounts') }}/{{ $item->gambar }}" alt="image" height="50" width="50" />
                                 </td>
                                 <td>
                                     {{ $item->fullname }}
                                 </td>
-                                @if ($item->role === 'admin')
-                                    <td style="color:rgb(0, 255, 0); font-weight: bold;">
-                                        {{ $item->role }}</td>
-                                @else
-                                    <td>{{ $item->role }}</td>
-                                @endif
-                                <td>{{ $item->email }}</td>
-                                @if ($item->role === 'admin')
-                                    <td style="color:rgb(0, 255, 0); font-weight: bold;">Admin User</td>
-                                @else
-                                    <td>
-                                        <form onsubmit="return confirm('Yakin ingin Mengangkat USER Menjadi ADMIN ?')"
-                                            class="d-inline" action="/uprole/{{ $item->id }}" method="POST">
-                                            @csrf
-                                            <input type="submit"
-                                                class="btn-sm text-decoration-none border border-warning text-warning"
-                                                value="UP">
-                                        </form>
-                                        &nbsp;<a href="/edituc/{{ $item->id }}"
-                                            class="btn-sm btn-warning text-decoration-none">Edit</a>
-                                        <form onsubmit="return confirmDelete(event)" class="d-inline"
-                                            action="/hapusuc/{{ $item->id }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn-sm btn-danger btn-sm">Del</button>
-                                        </form>
-                                @endif
+                                <td style="color:{{ $item->role === 'admin' ? 'rgb(0, 255, 0)' : 'black' }}; font-weight: bold;">
+                                    {{ $item->role }}
                                 </td>
-                            </tbody>
-                        @endforeach
+                                <td>{{ $item->email }}</td>
+                                <td>
+                                    {{-- Selalu tampilkan formulir pengubahan role --}}
+                                    <form onsubmit="return confirm('Yakin ingin mengubah role USER?')" class="d-inline" action="{{ route('uprole.update', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <select name="role">
+                                            <option value="admin" {{ $item->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                            <option value="instructor" {{ $item->role == 'instructor' ? 'selected' : '' }}>Instructor</option>
+                                            <option value="user" {{ $item->role == 'user' ? 'selected' : '' }}>User</option>
+                                        </select>
+                                        <button type="submit" class="btn-sm text-decoration-none border border-warning text-warning">Ubah Role</button>
+                                    </form>
+                    
+                                    &nbsp;
+                                    <a href="/edituc/{{ $item->id }}" class="btn-sm btn-warning text-decoration-none">Edit</a>
+                                    <form onsubmit="return confirmDelete(event)" class="d-inline" action="/hapusuc/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn-sm btn-danger btn-sm">Del</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    @endforeach
+                    
                     </table>
                 </div>
             </div>
