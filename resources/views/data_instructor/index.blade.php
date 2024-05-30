@@ -283,7 +283,6 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->nidn }}</td>
                                     <td>{{ $item->program_studi }}</td>
-                                   
                                     <td><a href="/editdatainstructor/{{ $item->id }}"
                                             class="btn-sm btn-warning text-decoration-none">Edit</a> |
                                             @if ( $isAdmin = Auth::user()->role === 'admin')

@@ -17,6 +17,7 @@ use App\Http\Controllers\DataInstructor;
 use App\Http\Controllers\FormDataMahasiswa;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\DaftarMateriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,7 +115,14 @@ Route::middleware(['auth'])->group(function () {
     });
     
     
-    
+    Route::get('/datamateri', [DaftarMateriController::class, 'index'])->name('datamateri');
+    Route::get('/tambahmat', [DaftarMateriController::class, 'tambah']);
+    Route::post('/uploadmateri', [DaftarMateriController::class, 'store']);
+    Route::get('/', [DaftarMateriController::class, 'datamateri']);
+    Route::get('/download/{file}', [DaftarMateriController::class, 'download']);
+    Route::get('/view/{id}', [DaftarMateriController::class, 'view']);
+
+
 
     
 

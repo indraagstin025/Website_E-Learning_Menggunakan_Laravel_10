@@ -25,7 +25,9 @@ class InstructorController extends Controller
         if (Auth::check()) { // Periksa jika sudah login
             $isAdmin = Auth::user()->role === 'admin';
         }
-        return view('instructor.user_instructor_form', compact('isAdmin'));
+    
+            return view('instructor.user_instructor_form', compact('isAdmin'));      
+        
     }
     
 
@@ -65,8 +67,9 @@ class InstructorController extends Controller
             'program_studi' => $request->program_studi,
             'nama_lengkap' => $request->nama_lengkap,
             'tanggal_lahir' => $request->tanggal_lahir,
+            
         ]);
-    
+        
         return redirect()->route('datainstructor')->with('success', 'Data mahasiswa berhasil ditambahkan!');
     }
 
@@ -74,5 +77,8 @@ class InstructorController extends Controller
 {
     return view('halaman_auth.login'); 
 }
+
+
+
 
 }

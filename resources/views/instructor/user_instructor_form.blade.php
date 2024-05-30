@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
+<body> 
+    @if (!session('instructor_form_filled'))
     <form action="{{ route('instructor.store') }}" method="POST">
         @csrf
         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -61,6 +62,10 @@
     
         <button type="submit" class="btn btn-primary">Kirim Data</button>
     </form>
-    
+    @else
+    <p>Tambahkan Data Anda</p>
+    <a class="collapse-item" href="{{ route('instructor.form') }}" style="color: black;">Isi Data Tambahan</a>
+    <a class="collapse-item" href="{{ route('datainstructor') }}">Cek Data Anda</a>
+@endif
 </body>
 </html>
