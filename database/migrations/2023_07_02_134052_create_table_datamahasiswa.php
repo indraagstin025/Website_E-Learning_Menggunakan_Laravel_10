@@ -18,11 +18,8 @@ return new class extends Migration
             $table->string('nim')->unique();
             $table->year('angkatan');
             $table->string('jurusan');
-            $table->unsignedBigInteger('user_id')->nullable(); 
-            $table->foreign('user_id')->references('id')->on('users');
             $table->string('nama_lengkap')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->boolean('profile_completed')->default(false);
             $table->timestamps();
         });
     }

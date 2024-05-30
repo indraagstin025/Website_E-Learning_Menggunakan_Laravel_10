@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\DataInstructor;
+use App\Http\Controllers\FormDataMahasiswa;
 use App\Http\Controllers\InstructorController;
-
-
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +90,33 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/tambahdatainstructor', [DataInstructor::class, 'create']);
     Route::post('/editdata', [DataInstructor::class, 'change']);
 
+    // routes/web.php
 
+    Route::middleware(['auth', 'check_role:admin'])->group(function () {
+        // ... route yang hanya bisa diakses oleh admin
+    });
+    
+    // routes/web.php
+    Route::middleware(['auth', 'check_role:user'])->group(function () {
+
+    Route::get('/user/mahasiswa/form', [UserController::class, 'showFormMahasiswa'])->name('mahasiswa.form');
+    Route::post('/user/mahasiswa/form', [UserController::class, 'storeMahasiswa'])->name('mahasiswa.store');
+    Route::post('/mahasiswa/create', [UserController::class, 'create'])->name('mahasiswa.create'); 
+    Route::post('/formdatamahasiswa/change', [DataMahasiswa::class, 'change'])->name('formdatamahasiswa.change');
+
+    });
+    
+    Route::middleware(['auth', 'check_role:instructor'])->group(function () {
+        Route::get('/user/instructor/form', [InstructorController::class, 'showFormInstructor'])->name('instructor.form');
+        Route::post('/user/instructor/form', [InstructorController::class, 'storeInstructor'])->name('instructor.store');
+       Route::post('/instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
+        Route::post('/formdatainstructor/change', [InstructorController::class, 'change'])->name('formdatainstructor.change');
+    });
+    
+    
+    
+
+    
 
     Route::get('/usercontrol', [UserControlController::class, 'index'])->name('usercontrol');
     

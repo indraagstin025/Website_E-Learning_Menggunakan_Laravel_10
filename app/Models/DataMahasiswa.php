@@ -10,7 +10,6 @@ class DataMahasiswa extends Model
     use HasFactory;
     public $table = 'datamahasiswa';
     public $fillable = [
-        'user_id',
         'name',
         'email',
         'nim',
@@ -18,6 +17,5 @@ class DataMahasiswa extends Model
         'jurusan',
         'nama_lengkap',
         'tanggal_lahir',
-        'profile_completed',
     ];
 }

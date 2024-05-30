@@ -71,7 +71,7 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header" style="color: black;">Login Screens:</h6>
-            <a class="collapse"></a>
+            <a class="collapse-item" href="{{ route('instructor.form') }}" style="color: black;">Data Instructor</a>
             <a class="collapse-item" href="login.html" style="color: black;">Login</a>
             <a class="collapse-item" href="register.html" style="color: black;">Register</a>
             <a class="collapse-item" href="forgot-password.html" style="color: black;">Forgot Password</a>
@@ -82,7 +82,6 @@
         </div>
     </div>
 </li>
-
 <!-- Nav Item - Charts -->
 <li class="nav-item">
     <a class="nav-link" href="charts.html" style="color: black;">

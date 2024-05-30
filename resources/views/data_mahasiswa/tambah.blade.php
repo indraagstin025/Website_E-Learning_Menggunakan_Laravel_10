@@ -242,7 +242,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nim">Nim</label>
-                        <input type="number" class="form-control" id="nim" placeholder="22020000" name="nim"
+                        <input type="number" class="form-control" id="nim" placeholder="714230000" name="nim"
                             required>
                     </div>
                     <div class="form-group">
@@ -254,6 +254,16 @@
                         <label for="jurusan">Jurusan</label>
                         <input type="text" class="form-control" id="jurusan" placeholder="Teknik Informatika"
                             name="jurusan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama_lengkap" placeholder="nama_lengkap"
+                            name="nama_lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="text" class="tanggal_lahir" id="tanggal_lahir" placeholder="tanggal_lahir"
+                            name="tanggal_lahir" required>
                     </div>
                     <button type="submit" class="btn btn-primary me-2">Tambah</button>
                     <a href="/datamahasiswa" class="btn btn-light">Kembali</a>

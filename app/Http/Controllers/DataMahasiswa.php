@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DataMahasiswa as ModelsDataMahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class DataMahasiswa extends Controller
 {
@@ -18,6 +19,7 @@ class DataMahasiswa extends Controller
     {
         return view('data_mahasiswa.tambah');
     }
+
 
     public function edit($id)
     {
@@ -38,7 +40,7 @@ class DataMahasiswa extends Controller
         $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email|unique:datamahasiswa,email',
-            'nim' => 'required|max:8|unique:datamahasiswa,nim',
+            'nim' => 'required|max:10|unique:datamahasiswa,nim',
             'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
             'nama_lengkap' => 'required|string|max:255',
@@ -50,7 +52,7 @@ class DataMahasiswa extends Controller
             'email.email' => 'Format Email Invalid',
             'email.unique' => 'Email sudah digunakan',
             'nim.required' => 'Nim Wajib Di isi',
-            'nim.max' => 'NIM max 8 Digit',
+            'nim.max' => 'NIM max 10 Digit',
             'nim.unique' => 'NIM sudah digunakan',
             'angkatan.required' => 'Angkatan Wajib Di isi',
             'angkatan.digits' => 'Masukan tahun angkatan 4 digit, misal: 2022',

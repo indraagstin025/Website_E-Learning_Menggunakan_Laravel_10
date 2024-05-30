@@ -71,6 +71,7 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header" style="color: black;">Login Screens:</h6>
+                <a class="collapse-item" href="{{ route('mahasiswa.form') }}" style="color: black;">Data Mahasiswa</a>
                 <a class="collapse-item" href="login.html" style="color: black;">Login</a>
                 <a class="collapse-item" href="register.html" style="color: black;">Register</a>
                 <a class="collapse-item" href="forgot-password.html" style="color: black;">Forgot Password</a>

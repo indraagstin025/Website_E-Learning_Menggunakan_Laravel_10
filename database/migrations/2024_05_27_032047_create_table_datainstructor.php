@@ -17,11 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->integer('nidn')->length(10)->default(0);
             $table->string('program_studi');
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->string('nama_lengkap')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->boolean('profile_completed')->default(false);
             $table->timestamps();
         });
     }

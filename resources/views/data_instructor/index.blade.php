@@ -231,9 +231,9 @@
                 <h6 class="m-0 font-weight-bold text-primary mb-4">DataTables Example</h6>
 
                 {{-- new --}}
-
+                @if ( $isAdmin = Auth::user()->role === 'admin')
                 <a href="/tambahdatainstructor" class="btn-sm btn-primary text-decoration-none">Tambah data</a>
-
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -283,13 +283,16 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->nidn }}</td>
                                     <td>{{ $item->program_studi }}</td>
+                                   
                                     <td><a href="/editdatainstructor/{{ $item->id }}"
                                             class="btn-sm btn-warning text-decoration-none">Edit</a> |
+                                            @if ( $isAdmin = Auth::user()->role === 'admin')
                                         <form onsubmit="return confirmHapus(event)"
                                             action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
                                             @csrf
                                             <button type="submit" class="btn-sm btn-danger">Hapus</button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

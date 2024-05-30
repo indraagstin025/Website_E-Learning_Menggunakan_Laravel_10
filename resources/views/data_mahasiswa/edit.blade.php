@@ -256,6 +256,16 @@
                             <input type="text" class="form-control" id="jurusan" name="jurusan"
                                 value="{{ $data->jurusan }}" required>
                         </div>
+                        <div class="form-group">
+                            <label for="nama_lengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                                value="{{ $data->nama_lengkap }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="text" class="tanggal_lahir" id="tanggal_lahir" name="tanggal_lahir"
+                                value="{{  $data->tanggal_lahir }}" required>
+                        </div>
                         <button type="submit" class="btn btn-primary me-2">Edit</button>
                         <a href="/datamahasiswa" class="btn btn-light">Kembali</a>
                     </form>
