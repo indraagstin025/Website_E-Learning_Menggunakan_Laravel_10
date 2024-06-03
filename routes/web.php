@@ -123,6 +123,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [DaftarMateriController::class, 'datamateri']);
     Route::get('/download/{file}', [DaftarMateriController::class, 'download']);
     Route::get('/view/{id}', [DaftarMateriController::class, 'view']);
+    Route::post('/materihapus/{id}', [DaftarMateriController::class, 'hapus']);
 
 
 
@@ -144,13 +145,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/uprole/{id}', [UproleController::class, 'index']);
     Route::put('/uprole/{id}', [UproleController::class, 'update'])->name('uprole.update');
-
-
-
- // routes/web.php
-
- 
-
     
     
     

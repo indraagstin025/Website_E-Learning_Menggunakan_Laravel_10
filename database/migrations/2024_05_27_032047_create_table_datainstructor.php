@@ -19,11 +19,6 @@ return new class extends Migration
             $table->integer('nidn')->length(10)->default(0);
             $table->string('departemen');
             $table->date('tanggal_lahir')->nullable();
-            $table->string('alamat');
-            $table->string('provinsi');
-            $table->string('kecamatan');
-            $table->string('kota_kabupaten');
-            $table->string('kode_pos');
             $table->timestamps();
         });
     }

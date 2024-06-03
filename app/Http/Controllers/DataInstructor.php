@@ -47,11 +47,7 @@ class DataInstructor extends Controller
             'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', // Digits_between for length
             'departemen' => 'required',
             'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
-            'alamat' => 'required',
-            'provinsi' => 'required',
-            'kecamatan' => 'required',
-            'kota_kabupaten' => 'required',
-            'kode_pos' => 'required',
+      
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
             'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
@@ -62,11 +58,7 @@ class DataInstructor extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
-            'alamat.required' => 'Alamat wajib diisi',
-            'provinsi.required' => 'Provinsi wajib diisi',
-            'kecamatan.required' => 'Kecamatan wajib diisi',
-            'kota_kabupaten.required' => 'Kota/Kabupaten wajib diisi',
-            'kode_pos.required' => 'Kode pos wajib diisi',
+          
         ]);
 
         ModelsDataInstructor::insert([
@@ -75,11 +67,7 @@ class DataInstructor extends Controller
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
-            'alamat' => $request->alamat,
-            'provinsi' => $request->provinsi,
-            'kecamatan' => $request->kecamatan,
-            'kota_kabupaten' => $request->kota_kabupaten,
-            'kode_pos' => $request->kode_pos,
+            
             
         ]);
         
@@ -91,15 +79,11 @@ class DataInstructor extends Controller
     {
         $request->validate([
             'nama_lengkap' => 'required|min:3',
-            'email' => 'required|email|unique:datainstructor,email', // Pastikan email unik
-            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', // Digits_between for length
+            'email' => 'required|email|unique:datainstructor,email,' .$request->id,
+            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn,'.$request->id,
             'departemen' => 'required',
             'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
-            'alamat' => 'required',
-            'provinsi' => 'required',
-            'kecamatan' => 'required',
-            'kota_kabupaten' => 'required',
-            'kode_pos' => 'required',
+        
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
             'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
@@ -110,26 +94,17 @@ class DataInstructor extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
-            'alamat.required' => 'Alamat wajib diisi',
-            'provinsi.required' => 'Provinsi wajib diisi',
-            'kecamatan.required' => 'Kecamatan wajib diisi',
-            'kota_kabupaten.required' => 'Kota/Kabupaten wajib diisi',
-            'kode_pos.required' => 'Kode pos wajib diisi',
+          
         ]);
 
         $datainstructor = ModelsDataInstructor::find($request->id);
-        $datainstructor->nama_lengkap = $request->nama_lengkap;
-        $datainstructor->email = $request->email;
-        $datainstructor->nidn = $request->nidn;
-        $datainstructor->departemen = $request->departemen;
-        $datainstructor->tanggal_lahir = $request->tanggal_lahir;
-        $datainstructor->alamat = $request->alamat;
-        $datainstructor->provinsi = $request->provinsi;
-        $datainstructor->kecamatan = $request->kecamatan;
-        $datainstructor->kota_kabupaten = $request->kota_kabupaten;
-        $datainstructor->kode_pos = $request->kode_pos;
-        $datainstructor->save();
-        $datainstructor->update($request->all());
+        $datainstructor->update([
+            'nama_lengkap' => $request->nama_lengkap,
+            'email' => $request->email,
+            'nidn' => $request->nidn,
+            'departemen' => $request->departemen,
+            'tanggal_lahir' => $request->tanggal_lahir,
+        ]);
 
         Session::flash('success', 'Berhasil Mengubah Data');
 

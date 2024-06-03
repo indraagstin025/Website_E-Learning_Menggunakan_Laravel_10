@@ -255,6 +255,7 @@
                     </script>
                 @endif
             </div>
+       
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -265,11 +266,6 @@
                                 <th>NIDN</th>
                                 <th>Departemen</th>
                                 <th>Tanggal Lahir</th>
-                                <th>Alamat</th>
-                                <th>Provinsi</th>
-                                <th>Kecamatan</th>
-                                <th>Kota/Kabupaten</th>
-                                <th>Kode Pos</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -280,11 +276,6 @@
                                 <th>Nidn</th>
                                 <th>Departemen</th>
                                 <th>Tanggal Lahir</th>
-                                <th>Alamat</th>
-                                <th>Provinsi</th>
-                                <th>Kecamatan</th>
-                                <th>Kota/Kabupaten</th>
-                                <th>Kode Pos</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -296,11 +287,6 @@
                                     <td>{{ $item->nidn }}</td>
                                     <td>{{ $item->departemen }}</td>
                                     <td>{{ $item->tanggal_lahir }}</td>
-                                    <td>{{ $item->alamat }}</td>
-                                    <td>{{ $item->provinsi }}</td>
-                                    <td>{{ $item->kecamatan }}</td>
-                                    <td>{{ $item->kota_kabupaten }}</td>
-                                    <td>{{ $item->kode_pos }}</td>
                                     <td><a href="/editdatainstructor/{{ $item->id }}"
                                             class="btn-sm btn-warning text-decoration-none">Edit</a> |
                                             @if ( $isAdmin = Auth::user()->role === 'admin')
@@ -318,7 +304,7 @@
                 </div>
             </div>
         </div>
-
+        
     </div>
     <!-- /.container-fluid -->
 @endsection

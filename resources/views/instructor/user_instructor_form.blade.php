@@ -60,50 +60,6 @@
                 @enderror
             </div>
 
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" 
-                       value="{{ old('alamat', $data->alamat ?? '') }}" required>
-                @error('alamat')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="provinsi">Provinsi</label>
-                <input type="text" class="form-control" id="provinsi" name="provinsi" 
-                       value="{{ old('provinsi', $data->provinsi ?? '') }}" required>
-                @error('provinsi')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="kecamatan">Kecamatan</label>
-                <input type="text" class="form-control" id="kecamatan" name="kecamatan" 
-                       value="{{ old('kecamatan', $data->kecamatan ?? '') }}" required>
-                @error('kecamatan')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="kota_kabupaten">Kota/Kabupaten</label>
-                <input type="text" class="form-control" id="kota_kabupaten" name="kota_kabupaten" 
-                       value="{{ old('kota_kabupaten', $data->kota_kabupaten ?? '') }}" required>
-                @error('kota_kabupaten')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="kode_pos">Kode Pos</label>
-                <input type="text" class="form-control" id="kode_pos" name="kode_pos" 
-                       value="{{ old('kode_pos', $data->kode_pos ?? '') }}" required>
-                @error('kode_pos')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
             
             <button type="submit" class="btn btn-primary">Kirim Data</button>
         </form>

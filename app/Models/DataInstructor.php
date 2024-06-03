@@ -16,11 +16,7 @@ class DataInstructor extends Model
         'nidn',
         'departemen',
         'tanggal_lahir',
-        'alamat',
-        'provinsi',
-        'kecamatan',
-        'kota_kabupaten',
-        'kode_pos',
+       
        
     ];
 

@@ -25,15 +25,31 @@ class DaftarMateriController extends Controller
 
     function tambah()
     {
+        $data = ModelsCourse::all();
         $isAdmin = false; 
         if (Auth::check()) { 
             $isAdmin = Auth::user()->role === 'admin'; 
         }
 
-        return view('data_materi.tambah');
-
-
+        return view('data_materi.tambah', ['data' => $data]);
     }
+
+    function hapus(Request $request)
+    {
+        ModelsCourse::where('id', $request->id)->delete();
+
+        Session::flash('success', 'Berhasil Hapus Data');
+
+        return redirect('/datamateri');
+
+
+       
+    }
+
+
+
+
+
 
 
     function store(Request $request)
@@ -50,7 +66,7 @@ class DaftarMateriController extends Controller
         $data->deskripsi = $request->deskripsi;
 
         $data->save();
-        return redirect()->back();
+        return redirect('datamateri')->with('succes', 'Anda berhasil mengunggah materi');
     }
 
     function datamateri()

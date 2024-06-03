@@ -48,11 +48,7 @@ class InstructorController extends Controller
             'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', // Digits_between for length
             'departemen' => 'required',
             'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
-            'alamat' => 'required',
-            'provinsi' => 'required',
-            'kecamatan' => 'required',
-            'kota_kabupaten' => 'required',
-            'kode_pos' => 'required',
+     
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
             'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
@@ -63,11 +59,7 @@ class InstructorController extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
-            'alamat.required' => 'Alamat wajib diisi',
-            'provinsi.required' => 'Provinsi wajib diisi',
-            'kecamatan.required' => 'Kecamatan wajib diisi',
-            'kota_kabupaten.required' => 'Kota/Kabupaten wajib diisi',
-            'kode_pos.required' => 'Kode pos wajib diisi',
+       
         ]);
     
         $user_id = Auth::id();  
@@ -78,11 +70,7 @@ class InstructorController extends Controller
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
-            'alamat' => $request->alamat,
-            'provinsi' => $request->provinsi,
-            'kecamatan' => $request->kecamatan,
-            'kota_kabupaten' => $request->kota_kabupaten,
-            'kode_pos' => $request->kode_pos,
+       
             
             
         ]);

@@ -261,35 +261,6 @@
                                 value="{{ $data->tanggal_lahir }}" required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat"
-                                value="{{ $data->alamat }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="provinsi">Provinsi</label>
-                            <input type="text" class="form-control" id="provinsi" name="provinsi"
-                                value="{{ $data->provinsi }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="kecamatan">Kecamatan</label>
-                            <input type="text" class="form-control" id="kecamatan" name="kecamatan"
-                                value="{{ $data->kecamatan }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="kota_kabupaten">Kota/Kabupaten</label>
-                            <input type="text" class="form-control" id="kota_kabupaten" name="kota_kabupaten"
-                                value="{{ $data->kota_kabupaten}}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="kode_pos">Kode Pos</label>
-                            <input type="text" class="form-control" id="kode_pos" name="kode_pos"
-                                value="{{ $data->kode_pos }}" required>
-                        </div>
                         <button type="submit" class="btn btn-primary me-2">Edit</button>
                         <a href="/datainstructor" class="btn btn-light">Kembali</a>
                     </form>

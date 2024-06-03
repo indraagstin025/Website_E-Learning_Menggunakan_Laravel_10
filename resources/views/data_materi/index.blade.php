@@ -148,12 +148,17 @@
 
                         <tbody>
                         @foreach ($data as $item)
-                            <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->deskripsi }}</td>    
-                                <td><a href="{{ url('/view',$item->id) }}">View</a></td>
-                                <td><a href="{{ url('/download' ,$item->file) }}">Download</a></td>
-                            </tr>
+                        <tr>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->deskripsi }}</td>    
+                            <td><a href="{{ url('/view',$item->id) }}">View</a></td>
+                            <td><a href="{{ url('/download' ,$item->file) }}">Download</a></td>
+                            <td><a href="/materiedit/{{ $item->id }}"class="btn-sm btn-warning text-decoration-none">Edit</a> | 
+                                <form onsubmit="return confirmHapus(event)" action="/materihapus/{{ $item->id }}" method="post" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn-sm btn-danger">Hapus</button>
+                                </form></td>
+                        </tr>
                         @endforeach
                         </tbody>
 
