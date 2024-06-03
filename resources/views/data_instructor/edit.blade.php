@@ -232,24 +232,63 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
                         <div class="form-group">
-                            <label for="nama">Name</label>
-                            <input type="text" class="form-control" id="nama" name="name"
-                                value="{{ $data->name }}" required>
+                            <label for="nama_lengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                                value="{{ $data->nama_lengkap }}" required>
                         </div>
+
                         <div class="form-group">
                             <label for="exampleInputEmail3">Email address</label>
                             <input type="email" class="form-control" id="exampleInputEmail3" name="email"
                                 value="{{ $data->email }}" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="nidn">Nidn</label>
+                            <label for="nidn">NIDN</label>
                             <input type="number" class="form-control" id="nidn" name="nidn"
                                 value="{{ $data->nidn }}" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="program-studi">Program Studi</label>
-                            <input type="number" class="form-control" id="program-studi" name="program-studi"
-                                value="{{ $data->program_studi }}" required>
+                            <label for="departemen">Departemen</label>
+                            <input type="text" class="form-control" id="departemen" name="departemen"
+                                value="{{ $data->departemen }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tanggal_lahir">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
+                                value="{{ $data->tanggal_lahir }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat"
+                                value="{{ $data->alamat }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="provinsi">Provinsi</label>
+                            <input type="text" class="form-control" id="provinsi" name="provinsi"
+                                value="{{ $data->provinsi }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kecamatan">Kecamatan</label>
+                            <input type="text" class="form-control" id="kecamatan" name="kecamatan"
+                                value="{{ $data->kecamatan }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kota_kabupaten">Kota/Kabupaten</label>
+                            <input type="text" class="form-control" id="kota_kabupaten" name="kota_kabupaten"
+                                value="{{ $data->kota_kabupaten}}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kode_pos">Kode Pos</label>
+                            <input type="text" class="form-control" id="kode_pos" name="kode_pos"
+                                value="{{ $data->kode_pos }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary me-2">Edit</button>
                         <a href="/datainstructor" class="btn btn-light">Kembali</a>

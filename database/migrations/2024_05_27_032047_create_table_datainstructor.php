@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('datainstructor', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('user_id');
+            $table->string('nama_lengkap')->nullable();
             $table->string('email')->unique();
             $table->integer('nidn')->length(10)->default(0);
-            $table->string('program_studi');
-            $table->string('nama_lengkap')->nullable();
+            $table->string('departemen');
             $table->date('tanggal_lahir')->nullable();
+            $table->string('alamat');
+            $table->string('provinsi');
+            $table->string('kecamatan');
+            $table->string('kota_kabupaten');
+            $table->string('kode_pos');
             $table->timestamps();
         });
     }
@@ -29,5 +34,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('datainstructor');
+        
     }
+
+    
 };

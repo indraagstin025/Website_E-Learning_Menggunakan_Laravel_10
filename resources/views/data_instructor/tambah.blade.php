@@ -231,9 +231,9 @@
                 <form class="forms-sample" method="post" action="/tambahdatainstructor" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="nama">Name</label>
-                        <input type="text" class="form-control" id="nama" placeholder="Kevin Example"
-                            name="name" required>
+                        <label for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama_lengkap" placeholder="Kevin Example"
+                            name="nama_lengkap" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -241,14 +241,44 @@
                             name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="nidn">Nidn</label>
-                        <input type="number" class="form-control" id="nidn" placeholder="22020000" name="nidn"
-                            required>
+                        <label for="nidn">NIDN</label>
+                        <input type="text" class="form-control" id="nidn" placeholder="22020000" 
+                        name="nidn" required>
                     </div>
                     <div class="form-group">
-                        <label for="program_studi">Program Studi</label>
-                        <input type="text" class="form-control" id="program_studi" placeholder="TeknikInformatika" name="program_studi"
-                            required>
+                        <label for="departemen">Departemen</label>
+                        <input type="text" class="form-control" id="departemen" placeholder="TeknikInformatika" 
+                        name="departemen" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="tanggal_lahir" placeholder="02-25-2002" 
+                        name="tanggal_lahir" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" class="form-control" id="alamat" placeholder="Jl. Jakarta" 
+                        name="alamat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="provinsi">Provinsi</label>
+                        <input type="text" class="form-control" id="provinsi" placeholder="Jawa Barat" 
+                        name="provinsi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kecamatan">Kecamatan</label>
+                        <input type="text" class="form-control" id="provinsi" placeholder="Lembang" 
+                        name="provinsi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kota_kabupaten">Kota/Kabupaten</label>
+                        <input type="text" class="form-control" id="kota_kabupaten" placeholder="Bandung" 
+                        name="kota_kabupaten" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="kode_pos">Kode Pos</label>
+                        <input type="text" class="form-control" id="kode_pos" placeholder="40559" 
+                        name="kode_pos" required>
                     </div>
                     <button type="submit" class="btn btn-primary me-2">Tambah</button>
                     <a href="/datainstructor" class="btn btn-light">Kembali</a>

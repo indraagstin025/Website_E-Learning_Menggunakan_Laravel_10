@@ -103,7 +103,7 @@
         <hr class="sidebar-divider d-none d-md-block" style="color:black;">
 
         <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
+        <div class="text-center d-none d-md-inline" style="color:black;">
             <button class="rounded-circle border-0" id="sidebarToggle" style="color:black;"></button>
         </div>
     @endsection
@@ -113,32 +113,32 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item active" >
             <a class="nav-link" href="/user">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <i class="fas fa-fw fa-tachometer-alt" style="color:black;"></i>
+                <span style="color:black;">Dashboard</span></a>
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider">
+        <hr class="sidebar-divider" style="color:black;">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
+        <div class="sidebar-heading" style="color:black;">
             Interface
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo "
+                aria-expanded="true" aria-controls="collapseTwo" style="color:black;">
+                <i class="fas fa-fw fa-cog" style="color:black;"></i>
+                <span style="color:black;">Components</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
+                <div class="bg-white py-2 collapse-inner rounded" style="color:black;">
+                    <h6 class="collapse-header" style="color:black;">Custom Components:</h6>
+                    <a class="collapse-item" href="buttons.html" style="color:black;">Buttons</a>
+                    <a class="collapse-item" href="cards.html" style="color:black;">Cards</a>
                 </div>
             </div>
         </li>
@@ -146,12 +146,12 @@
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
+                aria-expanded="true" aria-controls="collapseUtilities" style="color:black;">
+                <i class="fas fa-fw fa-wrench" style="color:black;"></i>
+                <span style="color:black;">Utilities</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                data-parent="#accordionSidebar">
+                data-parent="#accordionSidebar" >
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
                     <a class="collapse-item" href="utilities-color.html">Colors</a>
@@ -166,52 +166,52 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
+        <div class="sidebar-heading" style="color:black;">
             Addons
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item" style="color:black;">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
+                aria-expanded="true" aria-controls="collapsePages" style="color:black;">
+                <i class="fas fa-fw fa-folder" style="color:black;"></i>
+                <span style="color:black;">Pages</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datainstructor') }}">Data Instructor</a>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                <div class="bg-white py-2 collapse-inner rounded" style="color:black;">
+                    <h6 class="collapse-header" style="color:black;">Login Screens:</h6>
+                    <a class="collapse-item" href="{{ route('datainstructor') }}" style="color:black;">Data Instructor</a>
+                    <a class="collapse-item" href="login.html" style="color:black;">Login</a>
+                    <a class="collapse-item" href="register.html" style="color:black;">Register</a>
+                    <a class="collapse-item" href="forgot-password.html" style="color:black;">Forgot Password</a>
+                    <div class="collapse-divider" style="color:black;"></div>
+                    <h6 class="collapse-header" style="color:black;">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html" style="color:black;">404 Page</a>
+                    <a class="collapse-item" href="blank.html" style="color:black;">Blank Page</a>
                 </div>
             </div>
         </li>
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
+            <a class="nav-link" href="charts.html" style="color:black;">
+                <i class="fas fa-fw fa-chart-area" style="color:black;"></i>
+                <span style="color:black;">Charts</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
+            <a class="nav-link" href="tables.html" style="color:black;">
+                <i class="fas fa-fw fa-table" style="color:black;"></i>
+                <span style="color:black;">Tables</span></a>
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider d-none d-md-block" style="color:black;">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <button class="rounded-circle border-0" id="sidebarToggle" style="color:black;"></button>
         </div>
     @endsection
 @endif
@@ -260,29 +260,47 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Nama Lengkap</th>
                                 <th>Email</th>
-                                <th>Nidn</th>
-                                <th>Program Studi</th>
+                                <th>NIDN</th>
+                                <th>Departemen</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Alamat</th>
+                                <th>Provinsi</th>
+                                <th>Kecamatan</th>
+                                <th>Kota/Kabupaten</th>
+                                <th>Kode Pos</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Name</th>
+                                <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Nidn</th>
-                                <th>Program Studi</th>
+                                <th>Departemen</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Alamat</th>
+                                <th>Provinsi</th>
+                                <th>Kecamatan</th>
+                                <th>Kota/Kabupaten</th>
+                                <th>Kode Pos</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->nama_lengkap }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->nidn }}</td>
-                                    <td>{{ $item->program_studi }}</td>
+                                    <td>{{ $item->departemen }}</td>
+                                    <td>{{ $item->tanggal_lahir }}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->provinsi }}</td>
+                                    <td>{{ $item->kecamatan }}</td>
+                                    <td>{{ $item->kota_kabupaten }}</td>
+                                    <td>{{ $item->kode_pos }}</td>
                                     <td><a href="/editdatainstructor/{{ $item->id }}"
                                             class="btn-sm btn-warning text-decoration-none">Edit</a> |
                                             @if ( $isAdmin = Auth::user()->role === 'admin')

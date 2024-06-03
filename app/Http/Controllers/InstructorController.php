@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataInstructor;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class InstructorController extends Controller
 {
@@ -21,62 +22,84 @@ class InstructorController extends Controller
 
     public function showFormInstructor()
     {
-        $isAdmin = false; // Default ke false
-        if (Auth::check()) { // Periksa jika sudah login
+
+        $user_id = Auth::id();
+        $dataInstructor = DataInstructor::where('user_id', $user_id)->first();
+        $isAdmin = false; 
+        if (Auth::check()) { 
             $isAdmin = Auth::user()->role === 'admin';
         }
     
-            return view('instructor.user_instructor_form', compact('isAdmin'));      
+        if ($dataInstructor) {
+            return redirect()->route('datainstructor')->with('message', 'Data instructor sudah diisi.');
+        } else {
+            return view('instructor.user_instructor_form', compact('isAdmin'));
+        }    
         
     }
-    
 
+    
     public function storeInstructor(Request $request)
     {
        
         $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:datamahasiswa,email',
-            'nidn' => 'required|max:10|unique:datamahasiswa,nim',
-            'nidn' => 'required|digits:10',
-            'program_studi' => 'required',
-            'nama_lengkap' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'nama_lengkap' => 'required|min:3',
+            'email' => 'required|email|unique:datainstructor,email', // Pastikan email unik
+            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', // Digits_between for length
+            'departemen' => 'required',
+            'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
+            'alamat' => 'required',
+            'provinsi' => 'required',
+            'kecamatan' => 'required',
+            'kota_kabupaten' => 'required',
+            'kode_pos' => 'required',
         ], [
-            'name.required' => 'Nama wajib diisi',
-            'name.min' => 'Nama minimal harus 3 karakter',
+            'nama_lengkap.required' => 'Nama lengkap wajib diisi',
+            'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Format email tidak valid',
-            'email.unique' => 'Email sudah digunakan',
             'nidn.required' => 'NIDN wajib diisi',
-            'nidn.max' => 'NIDN maksimal 10 karakter',
-            'nidn.unique' => 'NIDN sudah digunakan',
-            'program_studi.required' => 'Program studi wajib diisi',
-            'program_studi.digits' => 'Program Studi Wajib di isi',
-            'nama_lengkap.required' => 'Nama Lengkap wajib diisi',
-            'nama_lengkap.max' => 'Nama Lengkap maksimal 255 karakter',
-            'tanggal_lahir.required' => 'Tanggal Lahir wajib diisi',
-            'tanggal_lahir.date' => 'Format Tanggal Lahir tidak valid',
+            'nidn.numeric' => 'NIDN harus berupa angka',
+            'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
+            'departemen.required' => 'Departemen wajib diisi',
+            'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
+            'alamat.required' => 'Alamat wajib diisi',
+            'provinsi.required' => 'Provinsi wajib diisi',
+            'kecamatan.required' => 'Kecamatan wajib diisi',
+            'kota_kabupaten.required' => 'Kota/Kabupaten wajib diisi',
+            'kode_pos.required' => 'Kode pos wajib diisi',
         ]);
     
-        
-        DataInstructor::create([
-            'name' => $request->name,
+        $user_id = Auth::id();  
+        $datainstructor = DataInstructor::create([
+            'user_id' => $user_id,
+            'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'nidn' => $request->nidn,
-            'program_studi' => $request->program_studi,
-            'nama_lengkap' => $request->nama_lengkap,
+            'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => $request->alamat,
+            'provinsi' => $request->provinsi,
+            'kecamatan' => $request->kecamatan,
+            'kota_kabupaten' => $request->kota_kabupaten,
+            'kode_pos' => $request->kode_pos,
+            
             
         ]);
+
         
+
         return redirect()->route('datainstructor')->with('success', 'Data mahasiswa berhasil ditambahkan!');
     }
 
     public function showLoginForm()
-{
+    {
+
     return view('halaman_auth.login'); 
-}
+
+    }   
+
+
 
 
 

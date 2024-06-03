@@ -89,7 +89,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/hapusdatainstructor/{id}', [DataInstructor::class, 'hapus']);
 
     Route::post('/tambahdatainstructor', [DataInstructor::class, 'create']);
-    Route::post('/editdata', [DataInstructor::class, 'change']);
+    Route::post('/editdatainstructor', [DataInstructor::class, 'change']);
 
     // routes/web.php
 
@@ -110,8 +110,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth', 'check_role:instructor'])->group(function () {
         Route::get('/user/instructor/form', [InstructorController::class, 'showFormInstructor'])->name('instructor.form');
         Route::post('/user/instructor/form', [InstructorController::class, 'storeInstructor'])->name('instructor.store');
-       Route::post('/instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
+        Route::post('/instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
         Route::post('/formdatainstructor/change', [InstructorController::class, 'change'])->name('formdatainstructor.change');
+       
+
     });
     
     

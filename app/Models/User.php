@@ -65,5 +65,5 @@ class User extends Authenticatable
         return $this->role === 'admin'; // Atau kondisi lain yang sesuai dengan logika Anda
     }
 
-    
+
 }

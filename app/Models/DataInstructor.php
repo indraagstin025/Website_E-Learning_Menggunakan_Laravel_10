@@ -10,11 +10,19 @@ class DataInstructor extends Model
     use HasFactory;
     public $table = 'datainstructor';
     public $fillable = [
-        'name',
+        'user_id',
+        'nama_lengkap',
         'email',
         'nidn',
-        'program_studi',
-        'nama_lengkap',
+        'departemen',
         'tanggal_lahir',
+        'alamat',
+        'provinsi',
+        'kecamatan',
+        'kota_kabupaten',
+        'kode_pos',
+       
     ];
+
+   
 }
