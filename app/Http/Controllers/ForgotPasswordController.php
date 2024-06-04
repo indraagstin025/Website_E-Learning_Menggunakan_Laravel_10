@@ -92,7 +92,7 @@ class ForgotPasswordController extends Controller
             PasswordReset::where(['email' => $request->email])->delete();
         }
 
-        switch ($user->role) { // Atau cara lain untuk menentukan peran pengguna
+        switch ($user->role) { 
             case 'admin':
                 $intendedRoute = 'admin.login';
                 break;
@@ -102,9 +102,8 @@ class ForgotPasswordController extends Controller
             case 'instructor':
                 $intendedRoute = 'instructor.login';
                 break;
-            // Tambahkan case lain jika diperlukan
             default:
-                $intendedRoute = 'login'; // Rute default jika peran tidak dikenali
+                $intendedRoute = 'login'; 
         }
     
         return redirect()->route($intendedRoute)->with('success', 'Password telah berhasil diperbarui!');

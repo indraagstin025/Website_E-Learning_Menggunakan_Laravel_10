@@ -221,91 +221,65 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Data Instructor</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p>
-
+        
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary mb-4">DataTables Example</h6>
-
-                {{-- new --}}
+                <h6 class="m-0 font-weight-bold text-primary mb-4">Data Instructor</h6>
+        
                 @if ( $isAdmin = Auth::user()->role === 'admin')
-                <a href="/tambahdatainstructor" class="btn-sm btn-primary text-decoration-none">Tambah data</a>
+                <a href="/tambahdatainstructor" class="btn btn-primary btn-sm">Tambah Data</a>
                 @endif
+        
+                {{-- Error Handling dan Success Message --}}
                 @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $item)
-                                <li>{{ $item }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
+        
                 @if (Session::has('success'))
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire(
-                                'Sukses',
-                                '{{ Session::get('success') }}',
-                                'success'
-                            );
-                        });
-                    </script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire(
+                            'Sukses',
+                            '{{ Session::get('success') }}',
+                            'success'
+                        );
+                    });
+                </script>
                 @endif
             </div>
-       
+        
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Nama Lengkap</th>
-                                <th>Email</th>
-                                <th>NIDN</th>
-                                <th>Departemen</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Nama Lengkap</th>
-                                <th>Email</th>
-                                <th>Nidn</th>
-                                <th>Departemen</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td>{{ $item->nama_lengkap }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->nidn }}</td>
-                                    <td>{{ $item->departemen }}</td>
-                                    <td>{{ $item->tanggal_lahir }}</td>
-                                    <td><a href="/editdatainstructor/{{ $item->id }}"
-                                            class="btn-sm btn-warning text-decoration-none">Edit</a> |
-                                            @if ( $isAdmin = Auth::user()->role === 'admin')
-                                        <form onsubmit="return confirmHapus(event)"
-                                            action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
-                                            @csrf
-                                            <button type="submit" class="btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                @foreach ($data as $item)
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="card-text"><strong>Nama: </strong>{{ $item->nama_lengkap }}</p>
+                        <p class="card-text"><strong>Email:</strong> {{ $item->email }}</p>
+                        <p class="card-text"><strong>NIDN:</strong> {{ $item->nidn }}</p>
+                        <p class="card-text"><strong>Departemen:</strong> {{ $item->departemen }}</p>
+                        <p class="card-text"><strong>Tanggal Lahir:</strong> {{ $item->tanggal_lahir }}</p>
+                        <div class="mt-2">
+                            <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm">Edit</a>
+                            @if ( $isAdmin = Auth::user()->role === 'admin')
+                            <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            </form>
+                            @endif
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
         </div>
         
-    </div>
     <!-- /.container-fluid -->
 @endsection
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

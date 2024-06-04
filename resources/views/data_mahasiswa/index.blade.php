@@ -228,10 +228,10 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary mb-4">DataTables Example</h6>
+                <h6 class="m-0 font-weight-bold text-primary mb-4">Data Mahasiswa</h6>
 
                 {{-- new --}}
-            
+                @if ( $isAdmin = Auth::user()->role === 'admin')
                 <a href="/damatambah" class="btn-sm btn-primary text-decoration-none">Tambah data</a>
 
                 @if ($errors->any())
@@ -256,29 +256,28 @@
                     </script>
                 @endif
             </div>
+            @endif
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Nim</th>
                                 <th>Angkatan</th>
                                 <th>Jurusan</th>
-                                <th>Nama Lengkap</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Name</th>
+                                <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Nim</th>
                                 <th>Angkatan</th>
                                 <th>Jurusan</th>
-                                <th>Nama Lengkap</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Action</th>
                             </tr>
@@ -286,21 +285,23 @@
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->nama_lengkap }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->nim }}</td>
                                     <td>{{ $item->angkatan }}</td>
                                     <td>{{ $item->jurusan }}</td>
-                                    <td>{{ $item->nama_lengkap }}</td>
                                     <td>{{ $item->tanggal_lahir }}</td>
 
                                     <td><a href="/damaedit/{{ $item->id }}"
                                             class="btn-sm btn-warning text-decoration-none">Edit</a> |
+                                            @if ( $isAdmin = Auth::user()->role === 'admin')
                                         <form onsubmit="return confirmHapus(event)"
                                             action="/damahapus/{{ $item->id }}" method="post" class="d-inline">
                                             @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="btn-sm btn-danger">Hapus</button>
                                         </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

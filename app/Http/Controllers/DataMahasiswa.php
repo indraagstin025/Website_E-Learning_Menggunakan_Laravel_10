@@ -11,7 +11,15 @@ class DataMahasiswa extends Controller
 {
     public function index()
     {
-        $data = ModelsDataMahasiswa::all();
+        $user = Auth::user();
+
+        // Jika user adalah admin, ambil semua data
+        if ($user->role === 'admin') {
+            $data = ModelsDataMahasiswa::all();
+        } else {
+            // Jika user bukan admin, ambil hanya satu data berdasarkan user_id
+            $data = ModelsDataMahasiswa::where('user_id', $user->id)->take(1)->get();
+        }
         return view('data_mahasiswa.index', ['data' => $data]);
     }
 
@@ -27,10 +35,21 @@ class DataMahasiswa extends Controller
         return view('data_mahasiswa.edit', ['data' => $data]);
     }
 
-    public function hapus(Request $request)
+    public function hapus($id)
     {
-        ModelsDataMahasiswa::where('id', $request->id)->delete();
-        Session::flash('success', 'Berhasil Hapus Data');
+
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $datamahasiswa = ModelsDataMahasiswa::find($id);
+            if ($datamahasiswa) {
+                $datamahasiswa->delete();
+                Session::flash('success', 'Data berhasil dihapus');
+            } else {
+                Session::flash('error', 'Data tidak ditemukan');
+            }
+        } else {
+            Session::flash('error', 'Anda tidak memiliki izin untuk menghapus data');
+        }
         return redirect('/datamahasiswa');
     }
 
@@ -38,83 +57,73 @@ class DataMahasiswa extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:datamahasiswa,email',
-            'nim' => 'required|max:10|unique:datamahasiswa,nim',
-            'angkatan' => 'required|digits:4',
-            'jurusan' => 'required',
-            'nama_lengkap' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+           
+                'nama_lengkap' => 'required|min:3',
+                'email' => 'required|email|unique:datamahasiswa,email', // Validasi email unik tanpa ID
+                'nim' => 'required|numeric|digits_between:1,10|unique:datamahasiswa,nim',
+                'angkatan' => 'required|digits:4',
+                'jurusan' => 'required',
+                'tanggal_lahir' => 'nullable|date',
         ], [
-            'name.required' => 'Name Wajib Di isi',
-            'name.min' => 'Bidang name minimal harus 3 karakter.',
+            'nama_lengkap.required' => 'Name Wajib Di isi',
+            'nama_lengkap.min' => 'Bidang name minimal harus 3 karakter.',
             'email.required' => 'Email Wajib Di isi',
             'email.email' => 'Format Email Invalid',
             'email.unique' => 'Email sudah digunakan',
-            'nim.required' => 'Nim Wajib Di isi',
-            'nim.max' => 'NIM max 10 Digit',
-            'nim.unique' => 'NIM sudah digunakan',
+            'nim.required' => 'NIM wajib diisi',
+            'nim.numeric' => 'NIM harus berupa angka',
+            'nim.digits_between' => 'NIM harus terdiri dari 1-10 digit',
             'angkatan.required' => 'Angkatan Wajib Di isi',
             'angkatan.digits' => 'Masukan tahun angkatan 4 digit, misal: 2022',
             'jurusan.required' => 'Jurusan Wajib Di isi',
-            'nama_lengkap.required' => 'Nama Lengkap Wajib Di isi',
-            'nama_lengkap.max' => 'Nama Lengkap max 255 karakter',
-            'tanggal_lahir.required' => 'Tanggal Lahir Wajib Di isi',
             'tanggal_lahir.date' => 'Format Tanggal Lahir Invalid',
         ]);
-
+        $user_id = Auth::id(); 
         ModelsDataMahasiswa::create([
             'user_id' => auth()->user()->id,
-            'name' => $request->name,
+            'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'nim' => $request->nim,
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
-            'nama_lengkap' => $request->nama_lengkap,
             'tanggal_lahir' => $request->tanggal_lahir,
         ]);
-
-        Session::flash('success', 'Data berhasil ditambahkan');
+        
+        
         return redirect('/datamahasiswa')->with('success', 'Berhasil Menambahkan Data');
     }
 
     public function change(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email|unique:datamahasiswa,email,' . $request->id,
-            'nim' => 'required|min:8|max:8|unique:datamahasiswa,nim,' . $request->id,
+            'nama_lengkap' => 'required|min:3',
+            'email' => 'required|email|unique:datamahasiswa,email,' . $request->id, // Validasi email unik dengan ID
+            'nim' => 'required|numeric|digits_between:1,10|unique:datamahasiswa,nim,' . $request->id,
             'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
-            'nama_lengkap' => 'required|string|max:255',
-            'tanggal_lahir' => 'required|date',
+            'tanggal_lahir' => 'nullable|date',
         ], [
-            'name.required' => 'Name Wajib Di isi',
-            'name.min' => 'Bidang name minimal harus 3 karakter.',
+            'nama_lengkap.required' => 'Name Wajib Di isi',
+            'nama_lengkap.min' => 'Bidang name minimal harus 3 karakter.',
             'email.required' => 'Email Wajib Di isi',
             'email.email' => 'Format Email Invalid',
             'email.unique' => 'Email sudah digunakan',
-            'nim.required' => 'Nim Wajib Di isi',
-            'nim.min' => 'NIM min 8 Digit',
-            'nim.max' => 'NIM max 8 Digit',
-            'nim.unique' => 'NIM sudah digunakan',
+            'nim.required' => 'NIM wajib diisi',
+            'nim.numeric' => 'NIM harus berupa angka',
+            'nim.digits_between' => 'NIM harus terdiri dari 1-10 digit',
             'angkatan.required' => 'Angkatan Wajib Di isi',
             'angkatan.digits' => 'Masukan tahun angkatan 4 digit, misal: 2022',
             'jurusan.required' => 'Jurusan Wajib Di isi',
-            'nama_lengkap.required' => 'Nama Lengkap Wajib Di isi',
-            'nama_lengkap.max' => 'Nama Lengkap max 255 karakter',
-            'tanggal_lahir.required' => 'Tanggal Lahir Wajib Di isi',
             'tanggal_lahir.date' => 'Format Tanggal Lahir Invalid',
         ]);
 
         $datamahasiswa = ModelsDataMahasiswa::find($request->id);
         $datamahasiswa->update([
-            'name' => $request->name,
+            'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'nim' => $request->nim,
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
-            'nama_lengkap' => $request->nama_lengkap,
             'tanggal_lahir' => $request->tanggal_lahir,
         ]);
 

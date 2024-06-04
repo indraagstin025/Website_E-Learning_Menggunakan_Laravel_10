@@ -231,9 +231,9 @@
                 <form class="forms-sample" method="POST" action="/tambahdama" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="nama">Name</label>
-                        <input type="text" class="form-control" id="nama" placeholder="Kevin Example"
-                            name="name" required>
+                        <label for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="nama_lengkap" placeholder="Kevin Example"
+                            name="nama_lengkap" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -256,13 +256,8 @@
                             name="jurusan" required>
                     </div>
                     <div class="form-group">
-                        <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama_lengkap" placeholder="nama_lengkap"
-                            name="nama_lengkap" required>
-                    </div>
-                    <div class="form-group">
                         <label for="tanggal_lahir">Tanggal Lahir</label>
-                        <input type="text" class="tanggal_lahir" id="tanggal_lahir" placeholder="tanggal_lahir"
+                        <input type="date" class="tanggal_lahir" id="tanggal_lahir" placeholder="tanggal_lahir"
                             name="tanggal_lahir" required>
                     </div>
                     <button type="submit" class="btn btn-primary me-2">Tambah</button>

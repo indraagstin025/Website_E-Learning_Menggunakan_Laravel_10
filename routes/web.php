@@ -79,14 +79,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/datamahasiswa', [DataMahasiswa::class, 'index'])->name('datamahasiswa');
     Route::get('/damatambah', [DataMahasiswa::class, 'tambah']);
     Route::get('/damaedit/{id}', [DataMahasiswa::class, 'edit']);
-    Route::post('/damahapus/{id}', [DataMahasiswa::class, 'hapus']);
+    Route::delete('/damahapus/{id}', [DataMahasiswa::class, 'hapus']);
 
    
 
     Route::get('/datainstructor', [DataInstructor::class, 'index'])->name('datainstructor');
     Route::get('/tambahdatainstructor', [DataInstructor::class, 'tambah']);
     Route::get('/editdatainstructor/{id}', [DataInstructor::class, 'edit']);
-    Route::post('/hapusdatainstructor/{id}', [DataInstructor::class, 'hapus']);
+    Route::delete('/hapusdatainstructor/{id}', [DataInstructor::class, 'hapus']);
 
     Route::post('/tambahdatainstructor', [DataInstructor::class, 'create']);
     Route::post('/editdatainstructor', [DataInstructor::class, 'change']);
@@ -94,16 +94,16 @@ Route::middleware(['auth'])->group(function () {
     // routes/web.php
 
     Route::middleware(['auth', 'check_role:admin'])->group(function () {
-        // ... route yang hanya bisa diakses oleh admin
+        
     });
     
-    // routes/web.php
+
     Route::middleware(['auth', 'check_role:user'])->group(function () {
 
     Route::get('/user/mahasiswa/form', [UserController::class, 'showFormMahasiswa'])->name('mahasiswa.form');
     Route::post('/user/mahasiswa/form', [UserController::class, 'storeMahasiswa'])->name('mahasiswa.store');
     Route::post('/mahasiswa/create', [UserController::class, 'create'])->name('mahasiswa.create'); 
-    Route::post('/formdatamahasiswa/change', [DataMahasiswa::class, 'change'])->name('formdatamahasiswa.change');
+    Route::post('/formdatamahasiswa/change', [UserController::class, 'change'])->name('formdatamahasiswa.change');
 
     });
     

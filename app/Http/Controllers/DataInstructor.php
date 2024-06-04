@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\DataInstructor as ModelsDataInstructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class DataInstructor extends Controller
 {
     function index()
     {
-        $data = ModelsDataInstructor::all();
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            $data = ModelsDataInstructor::all();
+        } else {
+           
+            $data = ModelsDataInstructor::where('user_id', $user->id)->take(1)->get();
+        }
+
         return view('data_instructor.index', ['data' => $data]);
     }
     function tambah()
@@ -24,8 +33,6 @@ class DataInstructor extends Controller
         return view('data_instructor.edit', ['data' => $data]);
     }
 
-    // DataMahasiswa.php
-
     public function form()
     {
 
@@ -33,20 +40,33 @@ class DataInstructor extends Controller
     
     }
 
-    function hapus(Request $request)
+    function hapus($id)
     {
 
+        $user = Auth::user();
+        if ($user->role === 'admin') {
+            $datainstructor = ModelsDataInstructor::find($id);
+            if ($datainstructor) {
+                $datainstructor->delete();
+                Session::flash('success', 'Data berhasil dihapus');
+            } else {
+                Session::flash('error', 'Data tidak ditemukan');
+            }
+        } else {
+            Session::flash('error', 'Anda tidak memiliki izin untuk menghapus data');
+        }
+
         return redirect('/datainstructor');
+    
     }
-    // new
     function create(Request $request)
     {
         $request->validate([
             'nama_lengkap' => 'required|min:3',
-            'email' => 'required|email|unique:datainstructor,email', // Pastikan email unik
-            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', // Digits_between for length
+            'email' => 'required|email|unique:datainstructor,email', 
+            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', 
             'departemen' => 'required',
-            'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
+            'tanggal_lahir' => 'nullable|date', 
       
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
@@ -60,8 +80,9 @@ class DataInstructor extends Controller
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
           
         ]);
-
-        ModelsDataInstructor::insert([
+        $user_id = Auth::id(); 
+        ModelsDataInstructor::create([
+            'user_id' => $user_id,
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'nidn' => $request->nidn,

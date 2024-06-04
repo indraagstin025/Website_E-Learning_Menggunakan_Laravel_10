@@ -24,13 +24,13 @@ class InstructorController extends Controller
     {
 
         $user_id = Auth::id();
-        $dataInstructor = DataInstructor::where('user_id', $user_id)->first();
+        $datainstructor = DataInstructor::where('user_id', $user_id)->first();
         $isAdmin = false; 
         if (Auth::check()) { 
             $isAdmin = Auth::user()->role === 'admin';
         }
     
-        if ($dataInstructor) {
+        if ($datainstructor) {
             return redirect()->route('datainstructor')->with('message', 'Data instructor sudah diisi.');
         } else {
             return view('instructor.user_instructor_form', compact('isAdmin'));
@@ -61,7 +61,8 @@ class InstructorController extends Controller
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
        
         ]);
-    
+        
+
         $user_id = Auth::id();  
         $datainstructor = DataInstructor::create([
             'user_id' => $user_id,

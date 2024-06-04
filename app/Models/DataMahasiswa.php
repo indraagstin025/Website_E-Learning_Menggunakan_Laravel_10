@@ -10,12 +10,12 @@ class DataMahasiswa extends Model
     use HasFactory;
     public $table = 'datamahasiswa';
     public $fillable = [
-        'name',
+        'user_id',
+        'nama_lengkap',
         'email',
         'nim',
         'angkatan',
         'jurusan',
-        'nama_lengkap',
         'tanggal_lahir',
     ];
 }
