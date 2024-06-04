@@ -30,12 +30,17 @@ use App\Http\Controllers\DaftarMateriController;
 |
 */
 
+Route::get('/', function () {
+    return view('halaman_depan.index');
+});
+
 Route::middleware(['guest'])->group(function () {
     Route::view('/', 'halaman_depan/index');
     Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
     Route::post('/sesi', [AuthController::class, 'login']);
     Route::get('/reg', [AuthController::class, 'create'])->name('registrasi');
     Route::post('/reg', [AuthController::class, 'register']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/verify/{verify_key}', [AuthController::class, 'verify']);
 
     
@@ -80,30 +85,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/damatambah', [DataMahasiswa::class, 'tambah']);
     Route::get('/damaedit/{id}', [DataMahasiswa::class, 'edit']);
     Route::delete('/damahapus/{id}', [DataMahasiswa::class, 'hapus']);
-
-   
+    Route::post('/tambahdama', [DataMahasiswa::class, 'create']);
+    Route::post('/editdama', [DataMahasiswa::class, 'change']);
 
     Route::get('/datainstructor', [DataInstructor::class, 'index'])->name('datainstructor');
     Route::get('/tambahdatainstructor', [DataInstructor::class, 'tambah']);
     Route::get('/editdatainstructor/{id}', [DataInstructor::class, 'edit']);
     Route::delete('/hapusdatainstructor/{id}', [DataInstructor::class, 'hapus']);
-
     Route::post('/tambahdatainstructor', [DataInstructor::class, 'create']);
     Route::post('/editdatainstructor', [DataInstructor::class, 'change']);
-
-    // routes/web.php
 
     Route::middleware(['auth', 'check_role:admin'])->group(function () {
         
     });
-    
-
     Route::middleware(['auth', 'check_role:user'])->group(function () {
 
-    Route::get('/user/mahasiswa/form', [UserController::class, 'showFormMahasiswa'])->name('mahasiswa.form');
-    Route::post('/user/mahasiswa/form', [UserController::class, 'storeMahasiswa'])->name('mahasiswa.store');
-    Route::post('/mahasiswa/create', [UserController::class, 'create'])->name('mahasiswa.create'); 
-    Route::post('/formdatamahasiswa/change', [UserController::class, 'change'])->name('formdatamahasiswa.change');
+        Route::get('/user/mahasiswa/form', [UserController::class, 'showFormMahasiswa'])->name('mahasiswa.form');
+        Route::post('/user/mahasiswa/form', [UserController::class, 'storeMahasiswa'])->name('mahasiswa.store');
+        Route::post('/mahasiswa/create', [UserController::class, 'create'])->name('mahasiswa.create'); 
+        Route::post('/formdatamahasiswa/change', [UserController::class, 'change'])->name('formdatamahasiswa.change');
 
     });
     
@@ -115,44 +115,36 @@ Route::middleware(['auth'])->group(function () {
        
 
     });
-    
-    
-    Route::get('/datamateri', [DaftarMateriController::class, 'index'])->name('datamateri');
-    Route::get('/tambahmat', [DaftarMateriController::class, 'tambah']);
-    Route::post('/uploadmateri', [DaftarMateriController::class, 'store']);
-    Route::get('/', [DaftarMateriController::class, 'datamateri']);
-    Route::get('/download/{file}', [DaftarMateriController::class, 'download']);
-    Route::get('/view/{id}', [DaftarMateriController::class, 'view']);
-    Route::post('/materihapus/{id}', [DaftarMateriController::class, 'hapus']);
+        Route::get('/datamateri', [DaftarMateriController::class, 'index'])->name('datamateri');
+        Route::get('/tambahmat', [DaftarMateriController::class, 'tambah']);
+        Route::post('/uploadmateri', [DaftarMateriController::class, 'store']);
+        Route::get('/', [DaftarMateriController::class, 'datamateri']);
+        Route::get('/download/{file}', [DaftarMateriController::class, 'download']);
+        Route::get('/view/{id}', [DaftarMateriController::class, 'view']);
+        Route::post('/materihapus/{id}', [DaftarMateriController::class, 'hapus']);
 
 
 
     
 
-    Route::get('/usercontrol', [UserControlController::class, 'index'])->name('usercontrol');
     
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
 
     // new
-    Route::post('/tambahdama', [DataMahasiswa::class, 'create']);
-    Route::post('/editdama', [DataMahasiswa::class, 'change']);
-
+    
+    Route::get('/usercontrol', [UserControlController::class, 'index'])->name('usercontrol');
     Route::get('/tambahuc', [UserControlController::class, 'tambah']);
     Route::get('/edituc/{id}', [UserControlController::class, 'edit']);
     Route::post('/hapusuc/{id}', [UserControlController::class, 'hapus']);
     Route::post('/tambahuc', [UserControlController::class, 'create']);
     Route::post('/edituc', [UserControlController::class, 'change']);
-
-    Route::post('/uprole/{id}', [UproleController::class, 'index']);
-    Route::put('/uprole/{id}', [UproleController::class, 'update'])->name('uprole.update');
-    
-    
-    
     Route::post('/tambahuc', [UserControlController::class, 'create']);
     Route::post('/edituc', [UserControlController::class, 'change']);
    
-
-
+    Route::post('/uprole/{id}', [UproleController::class, 'index']);
+    Route::put('/uprole/{id}', [UproleController::class, 'update'])->name('uprole.update');
+    Route::post('/uprole/{id}', [UproleController::class, 'index']);
+    Route::put('/uprole/{id}', [UproleController::class, 'update'])->name('uprole.update');
     Route::post('/uprole/{id}', [UproleController::class, 'index']);
 
 });

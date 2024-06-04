@@ -12,18 +12,19 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         if (!Auth::check()) {
-            $intendedRoute = $request->route()->getName(); // Dapatkan nama rute yang dituju
+            $intendedRoute = $request->route()->getName();
 
-            // Cek jika rute yang dituju adalah salah satu rute login
+          
             if ($intendedRoute === 'admin.login' || $intendedRoute === 'user.login' || $intendedRoute === 'instructor.login') {
-                return $next($request); // Lanjutkan ke rute login jika benar
+                return $next($request); 
             }
 
-            // Tentukan rute login default berdasarkan peran pengguna (misalnya, dari session)
+          
             $loginRoute = session('role') === 'admin' ? 'admin.login' : (session('role') === 'instructor' ? 'instructor.login' : 'user.login');
             return redirect()->route($loginRoute);
         }
 
         return $next($request);
+        
     }
 }

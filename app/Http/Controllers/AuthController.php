@@ -14,7 +14,6 @@ class AuthController extends Controller
     function index()
     {
         return view('halaman_auth/login');
-    
     }
     function login(Request $request)
     {
@@ -51,7 +50,6 @@ class AuthController extends Controller
         } else {
             return redirect()->route('auth')->withErrors('Email atau password salah');
         }
-    
     }
     function create()
     {
@@ -120,7 +118,7 @@ class AuthController extends Controller
             return redirect()->route('auth')->withErrors('Keys tidak valid. pastikan telah melakukan register')->withInput();
         }
     }
-    
+
     function logout()
     {
         Auth::logout();
@@ -130,5 +128,10 @@ class AuthController extends Controller
     public function showRegistrationForm()
     {
         return view('halaman_auth.register');
+    }
+
+    public function halamandepan()
+    {
+        return view('halaman_depan.index');
     }
 }

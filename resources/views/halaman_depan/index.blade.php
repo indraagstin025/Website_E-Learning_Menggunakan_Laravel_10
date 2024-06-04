@@ -82,7 +82,8 @@
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/cabin.png') }}" alt="..." />
+                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/cabin.png') }}"
+                            alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 2-->
@@ -93,7 +94,8 @@
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/cake.png') }}" alt="..." />
+                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/cake.png') }}"
+                            alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 3-->
@@ -104,7 +106,8 @@
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/circus.png') }}" alt="..." />
+                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/circus.png') }}"
+                            alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 4-->
@@ -115,7 +118,8 @@
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/game.png') }}" alt="..." />
+                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/game.png') }}"
+                            alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 5-->
@@ -126,7 +130,8 @@
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/safe.png') }}" alt="..." />
+                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/safe.png') }}"
+                            alt="..." />
                     </div>
                 </div>
                 <!-- Portfolio Item 6-->
@@ -137,7 +142,8 @@
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
                         </div>
-                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/submarine.png') }}" alt="..." />
+                        <img class="img-fluid" src="{{ asset('halaman_depan/assets/img/portfolio/submarine.png') }}"
+                            alt="..." />
                     </div>
                 </div>
             </div>
@@ -199,8 +205,8 @@
                     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
                         <!-- Name input-->
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="name" type="text"
-                                placeholder="Enter your name..." data-sb-validations="required" />
+                            <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                                data-sb-validations="required" />
                             <label for="name">Full name</label>
                             <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                         </div>
@@ -223,8 +229,9 @@
                         </div>
                         <!-- Message input-->
                         <div class="form-floating mb-3">
-                            <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
-                                style="height: 10rem" data-sb-validations="required"></textarea>
+                            <textarea class="form-control" id="message" type="text"
+                                placeholder="Enter your message here..." style="height: 10rem"
+                                data-sb-validations="required"></textarea>
                             <label for="message">Message</label>
                             <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
                             </div>
@@ -250,8 +257,7 @@
                             <div class="text-center text-danger mb-3">Error sending message!</div>
                         </div>
                         <!-- Submit Button-->
-                        <button class="btn btn-primary btn-xl disabled" id="submitButton"
-                            type="submit">Send</button>
+                        <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">Send</button>
                     </form>
                 </div>
             </div>
@@ -275,12 +281,10 @@
                     <h4 class="text-uppercase mb-4">Around the Web</h4>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
                             class="fab fa-fw fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
                             class="fab fa-fw fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                            class="fab fa-fw fa-dribbble"></i></a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4">
@@ -319,8 +323,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ asset('halaman_depan/assets/img/portfolio/cabin.png') }}"
-                                    alt="..." />
+                                <img class="img-fluid rounded mb-5"
+                                    src="{{ asset('halaman_depan/assets/img/portfolio/cabin.png') }}" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                     neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
@@ -357,8 +361,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ asset('halaman_depan/assets/img/portfolio/cake.png') }}"
-                                    alt="..." />
+                                <img class="img-fluid rounded mb-5"
+                                    src="{{ asset('halaman_depan/assets/img/portfolio/cake.png') }}" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                     neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
@@ -395,8 +399,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ asset('halaman_depan/assets/img/portfolio/circus.png') }}"
-                                    alt="..." />
+                                <img class="img-fluid rounded mb-5"
+                                    src="{{ asset('halaman_depan/assets/img/portfolio/circus.png') }}" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                     neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
@@ -433,8 +437,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ asset('halaman_depan/assets/img/portfolio/game.png') }}"
-                                    alt="..." />
+                                <img class="img-fluid rounded mb-5"
+                                    src="{{ asset('halaman_depan/assets/img/portfolio/game.png') }}" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                     neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
@@ -471,8 +475,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ asset('halaman_depan/assets/img/portfolio/safe.png') }}"
-                                    alt="..." />
+                                <img class="img-fluid rounded mb-5"
+                                    src="{{ asset('halaman_depan/assets/img/portfolio/safe.png') }}" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                     neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
@@ -509,8 +513,8 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image-->
-                                <img class="img-fluid rounded mb-5" src="{{ asset('halaman_depan/assets/img/portfolio/submarine.png') }}"
-                                    alt="..." />
+                                <img class="img-fluid rounded mb-5"
+                                    src="{{ asset('halaman_depan/assets/img/portfolio/submarine.png') }}" alt="..." />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
                                     neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore
