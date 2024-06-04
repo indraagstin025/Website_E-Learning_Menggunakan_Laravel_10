@@ -12,7 +12,7 @@ class AdminController extends Controller
     }
 
     public function showLoginForm()
-{
-    return view('halaman_auth.login'); // Ganti 'halaman_auth.login' dengan nama view login Anda yang sesuai
-}
+    {
+        return view('halaman_auth.login'); 
+    }
 }

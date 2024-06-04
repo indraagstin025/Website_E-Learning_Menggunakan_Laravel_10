@@ -16,7 +16,7 @@ class DataInstructor extends Controller
         if ($user->role === 'admin') {
             $data = ModelsDataInstructor::all();
         } else {
-           
+
             $data = ModelsDataInstructor::where('user_id', $user->id)->take(1)->get();
         }
 
@@ -36,8 +36,7 @@ class DataInstructor extends Controller
     public function form()
     {
 
-    return view('user_mahasiswa_form'); 
-    
+        return view('user_mahasiswa_form');
     }
 
     function hapus($id)
@@ -57,17 +56,16 @@ class DataInstructor extends Controller
         }
 
         return redirect('/datainstructor');
-    
     }
     function create(Request $request)
     {
         $request->validate([
             'nama_lengkap' => 'required|min:3',
-            'email' => 'required|email|unique:datainstructor,email', 
-            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', 
+            'email' => 'required|email|unique:datainstructor,email',
+            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn',
             'departemen' => 'required',
-            'tanggal_lahir' => 'nullable|date', 
-      
+            'tanggal_lahir' => 'nullable|date',
+
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
             'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
@@ -78,9 +76,9 @@ class DataInstructor extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
-          
+
         ]);
-        $user_id = Auth::id(); 
+        $user_id = Auth::id();
         ModelsDataInstructor::create([
             'user_id' => $user_id,
             'nama_lengkap' => $request->nama_lengkap,
@@ -88,10 +86,10 @@ class DataInstructor extends Controller
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
-            
-            
+
+
         ]);
-        
+
         Session::flash('success', 'Data berhasil ditambahkan');
 
         return redirect('/datainstructor')->with('success', 'Berhasil Menambahkan Data');
@@ -100,11 +98,11 @@ class DataInstructor extends Controller
     {
         $request->validate([
             'nama_lengkap' => 'required|min:3',
-            'email' => 'required|email|unique:datainstructor,email,' .$request->id,
-            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn,'.$request->id,
+            'email' => 'required|email|unique:datainstructor,email,' . $request->id,
+            'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn,' . $request->id,
             'departemen' => 'required',
             'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
-        
+
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
             'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
@@ -115,7 +113,7 @@ class DataInstructor extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
-          
+
         ]);
 
         $datainstructor = ModelsDataInstructor::find($request->id);

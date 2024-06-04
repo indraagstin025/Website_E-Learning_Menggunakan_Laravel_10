@@ -12,14 +12,12 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-       
+
         $user = Auth::user();
         $isAdmin = $user && $user->role === 'admin'; // Memeriksa role
 
         $data = DataMahasiswa::where('user_id', $user->id)->get();
         return view('data_mahasiswa_index', compact('data', 'isAdmin'));
-            
-          
     }
 
     public function getmahasiswa()

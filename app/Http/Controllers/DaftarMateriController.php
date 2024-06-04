@@ -15,9 +15,9 @@ class DaftarMateriController extends Controller
     {
         $data = ModelsCourse::all();
 
-        $isAdmin = false; 
-        if (Auth::check()) { 
-            $isAdmin = Auth::user()->role === 'admin'; 
+        $isAdmin = false;
+        if (Auth::check()) {
+            $isAdmin = Auth::user()->role === 'admin';
         }
         return view('data_materi.index', ['data' => $data]);
     }
@@ -26,9 +26,9 @@ class DaftarMateriController extends Controller
     function tambah()
     {
         $data = ModelsCourse::all();
-        $isAdmin = false; 
-        if (Auth::check()) { 
-            $isAdmin = Auth::user()->role === 'admin'; 
+        $isAdmin = false;
+        if (Auth::check()) {
+            $isAdmin = Auth::user()->role === 'admin';
         }
 
         return view('data_materi.tambah', ['data' => $data]);
@@ -41,17 +41,7 @@ class DaftarMateriController extends Controller
         Session::flash('success', 'Berhasil Hapus Data');
 
         return redirect('/datamateri');
-
-
-       
     }
-
-
-
-
-
-
-
     function store(Request $request)
     {
 

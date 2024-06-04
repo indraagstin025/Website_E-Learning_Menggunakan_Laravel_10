@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DataMahasiswa; // Import model DataMahasiswa
+use App\Models\DataMahasiswa; 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -23,16 +23,16 @@ class UserController extends Controller
     {
         $user_id = Auth::id();
         $datamahasiswa = DataMahasiswa::where('user_id', $user_id)->first();
-        $isAdmin = false; 
-        if (Auth::check()) { 
+        $isAdmin = false;
+        if (Auth::check()) {
             $isAdmin = Auth::user()->role === 'admin';
         }
-    
+
         if ($datamahasiswa) {
             return redirect()->route('datamahasiswa')->with('message', 'Data instructor sudah diisi.');
         } else {
             return view('user.user_mahasiswa_form', compact('isAdmin'));
-        }    ;
+        };
     }
 
     public function storeMahasiswa(Request $request)
@@ -41,7 +41,7 @@ class UserController extends Controller
         $request->validate([
             'nama_lengkap' => 'required|min:3',
             'email' => 'required|email|unique:datamahasiswa,email',
-            'nim' => 'required|numeric|digits_between:1,10|unique:datamahasiswa,nim', 
+            'nim' => 'required|numeric|digits_between:1,10|unique:datamahasiswa,nim',
             'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
             'tanggal_lahir' => 'nullable|date',
@@ -60,7 +60,7 @@ class UserController extends Controller
             'tanggal_lahir.date' => 'Format Tanggal Lahir tidak valid',
         ]);
 
-        $user_id = Auth::id();  
+        $user_id = Auth::id();
         DataMahasiswa::create([
             'user_id' => $user_id,
             'nama_lengkap' => $request->nama_lengkap,

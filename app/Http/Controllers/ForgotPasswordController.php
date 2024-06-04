@@ -42,7 +42,7 @@ class ForgotPasswordController extends Controller
         ]);
 
         try {
-            Mail::send('email.forgetPassword', ['token' => $token], function($message) use ($request) {
+            Mail::send('email.forgetPassword', ['token' => $token], function ($message) use ($request) {
                 $message->to($request->email);
                 $message->subject('Reset Password');
             });
@@ -92,7 +92,7 @@ class ForgotPasswordController extends Controller
             PasswordReset::where(['email' => $request->email])->delete();
         }
 
-        switch ($user->role) { 
+        switch ($user->role) {
             case 'admin':
                 $intendedRoute = 'admin.login';
                 break;
@@ -103,10 +103,9 @@ class ForgotPasswordController extends Controller
                 $intendedRoute = 'instructor.login';
                 break;
             default:
-                $intendedRoute = 'login'; 
+                $intendedRoute = 'login';
         }
-    
-        return redirect()->route($intendedRoute)->with('success', 'Password telah berhasil diperbarui!');
 
+        return redirect()->route($intendedRoute)->with('success', 'Password telah berhasil diperbarui!');
     }
 }

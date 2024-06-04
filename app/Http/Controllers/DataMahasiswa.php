@@ -57,13 +57,13 @@ class DataMahasiswa extends Controller
     public function create(Request $request)
     {
         $request->validate([
-           
-                'nama_lengkap' => 'required|min:3',
-                'email' => 'required|email|unique:datamahasiswa,email', // Validasi email unik tanpa ID
-                'nim' => 'required|numeric|digits_between:1,10|unique:datamahasiswa,nim',
-                'angkatan' => 'required|digits:4',
-                'jurusan' => 'required',
-                'tanggal_lahir' => 'nullable|date',
+
+            'nama_lengkap' => 'required|min:3',
+            'email' => 'required|email|unique:datamahasiswa,email', // Validasi email unik tanpa ID
+            'nim' => 'required|numeric|digits_between:1,10|unique:datamahasiswa,nim',
+            'angkatan' => 'required|digits:4',
+            'jurusan' => 'required',
+            'tanggal_lahir' => 'nullable|date',
         ], [
             'nama_lengkap.required' => 'Name Wajib Di isi',
             'nama_lengkap.min' => 'Bidang name minimal harus 3 karakter.',
@@ -78,7 +78,7 @@ class DataMahasiswa extends Controller
             'jurusan.required' => 'Jurusan Wajib Di isi',
             'tanggal_lahir.date' => 'Format Tanggal Lahir Invalid',
         ]);
-        $user_id = Auth::id(); 
+        $user_id = Auth::id();
         ModelsDataMahasiswa::create([
             'user_id' => auth()->user()->id,
             'nama_lengkap' => $request->nama_lengkap,
@@ -88,8 +88,8 @@ class DataMahasiswa extends Controller
             'jurusan' => $request->jurusan,
             'tanggal_lahir' => $request->tanggal_lahir,
         ]);
-        
-        
+
+
         return redirect('/datamahasiswa')->with('success', 'Berhasil Menambahkan Data');
     }
 
