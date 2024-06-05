@@ -28,6 +28,12 @@ class User extends Authenticatable
         'role'
     ];
 
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

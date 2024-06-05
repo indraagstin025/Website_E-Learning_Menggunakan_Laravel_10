@@ -14,4 +14,19 @@ class Course extends Model
         'deskripsi',
         'file',
     ];
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class, 'course_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'enrollments');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_user');
+    }
 }

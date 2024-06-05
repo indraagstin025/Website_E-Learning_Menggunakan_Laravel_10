@@ -102,70 +102,78 @@
         <button class="rounded-circle border-0" id="sidebarToggle" style="color: black;"></button>
     </div>
 @endsection
-@section('main')
+ @section('main')
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 grid-margin">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h4 class="font-weight-bold mb-0 ml-5">Data Materi</h4>
-                </div>
-                <div> 
-                @if ( $isAdmin = Auth::user()->role === 'admin')
-                    <a href="/tambahmat" class="text-decoration-none text-white mr-5">
-                        <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+                    <h4 class="font-weight-bold mb-0">Daftar Materi</h4>
+                    @if ($isAdmin || $isInstructor)
+                        <a href="/tambahmat" class="btn btn-light btn-icon-text btn-rounded">
                             <i class="ti-plus btn-icon-prepend"></i>Tambah Materi
-                        </button>
-                    </a>
-                @endif
+                        </a>
+                    @endif
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Deskripsi</th>
+                                    <th>Aksi</th> @if ($isUser)
+                                        <th>Enroll</th>
+                                    @endif
+                                    @if ($isAdmin || $isInstructor)
+                                        <th>Tindakan</th>
+                                    @endif
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->deskripsi }}</td>
+                                        <td>
+                                            <a href="{{ url('/view', $item->id) }}" class="btn btn-sm btn-info">View</a>
+                                            <a href="{{ url('/download', $item->file) }}" class="btn btn-sm btn-secondary">Download</a>
+                                        </td>
+                                        @if ($isUser)
+                                            <td>
+                                                <form action="{{ route('courses.enroll', $item->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-success">Enroll</button>
+                                                </form>
+                                                <form action="{{ route('courses.unenroll', $item->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger">Unenroll</button>
+                                                </form>
+                                            </td>
+                                        @endif
+                                        @if ($isAdmin || $isInstructor)
+                                            <td>
+                                                <a href="/materiedit/{{ $item->id }}" class="btn btn-sm btn-warning text-decoration-none">Edit</a>
+                                                <form onsubmit="return confirmHapus(event)" action="/materihapus/{{ $item->id }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE') 
+                                                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                </form>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="col-lg-12 grid-margin stretch-card mt-3">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Materi TABLE</h4>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Deskripsi</th>
-                                <th>File</th>
-                                <th>Download</th>
-                            </tr>
-                        </thead>
-
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Deskripsi</th>
-                                <th>File</th>
-                                <th>Download</th>
-                            </tr>
-                        </tfoot>
-
-                        <tbody>
-                        @foreach ($data as $item)
-                        <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->deskripsi }}</td>    
-                            <td><a href="{{ url('/view',$item->id) }}">View</a></td>
-                            <td><a href="{{ url('/download' ,$item->file) }}">Download</a></td>
-                            <td><a href="/materiedit/{{ $item->id }}"class="btn-sm btn-warning text-decoration-none">Edit</a> | 
-                                <form onsubmit="return confirmHapus(event)" action="/materihapus/{{ $item->id }}" method="post" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn-sm btn-danger">Hapus</button>
-                                </form></td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 @endsection
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DataMahasiswa;
 use App\Http\Controllers\UserControlController;
 use App\Http\Controllers\UserController;
@@ -112,13 +113,15 @@ Route::middleware(['auth'])->group(function () {
        
 
     });
-        Route::get('/datamateri', [DaftarMateriController::class, 'index'])->name('datamateri');
-        Route::get('/tambahmat', [DaftarMateriController::class, 'tambah']);
-        Route::post('/uploadmateri', [DaftarMateriController::class, 'store']);
-        Route::get('/', [DaftarMateriController::class, 'datamateri']);
-        Route::get('/download/{file}', [DaftarMateriController::class, 'download']);
-        Route::get('/view/{id}', [DaftarMateriController::class, 'view']);
-        Route::post('/materihapus/{id}', [DaftarMateriController::class, 'hapus']);
+        Route::get('/datamateri', [CourseController::class, 'index'])->name('datamateri');
+        Route::get('/tambahmat', [CourseController::class, 'tambah']);
+        Route::post('/uploadmateri', [CourseController::class, 'store']);
+        Route::get('/', [CourseController::class, 'datamateri']);
+        Route::get('/download/{file}', [CourseController::class, 'download']);
+        Route::get('/view/{id}', [CourseController::class, 'view']);
+        Route::post('/materihapus/{id}', [CourseController::class, 'hapus']);
+        Route::post('/courses/{course}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
+        Route::post('/courses/{course}/unenroll', [CourseController::class, 'unenroll'])->name('courses.unenroll');
 
 
 
