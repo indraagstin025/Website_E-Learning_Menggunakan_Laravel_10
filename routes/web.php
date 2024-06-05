@@ -30,22 +30,19 @@ use App\Http\Controllers\DaftarMateriController;
 |
 */
 
-Route::get('/', function () {
-    return view('halaman_depan.index');
-});
+
 
 Route::middleware(['guest'])->group(function () {
-    Route::view('/', 'halaman_depan/index');
+   
+    
     Route::get('/sesi', [AuthController::class, 'index'])->name('auth');
     Route::post('/sesi', [AuthController::class, 'login']);
     Route::get('/reg', [AuthController::class, 'create'])->name('registrasi');
     Route::post('/reg', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/verify/{verify_key}', [AuthController::class, 'verify']);
-
-    
-    
+    Route::get('/verify/{verify_key}', [AuthController::class, 'verify']);   
 });
+Route::view('/index', 'halaman_depan/index')->name(('index'));
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Rute Untuk Lupa Password
 

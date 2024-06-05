@@ -65,7 +65,7 @@ class UserControlController extends Controller
             'nama' => $accounts->fullname,
             'role' => 'user',
             'datetime' => date('Y-m-d H:i:s'),
-            'website' => 'Laravel10 - Pendaftaran melalui SMTP + Multiuser + CRUD + Sweetalert',
+            'website' => 'Learning Management System',
             'url' => 'http://' . request()->getHttpHost() . "/" . "verify/" . $accounts->verify_key,
         ];
 

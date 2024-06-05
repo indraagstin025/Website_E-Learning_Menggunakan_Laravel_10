@@ -122,7 +122,7 @@ class AuthController extends Controller
     function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/index');
     }
 
     public function showRegistrationForm()
@@ -134,4 +134,5 @@ class AuthController extends Controller
     {
         return view('halaman_depan.index');
     }
+
 }
