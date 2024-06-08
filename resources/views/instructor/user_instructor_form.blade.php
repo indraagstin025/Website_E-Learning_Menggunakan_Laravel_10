@@ -13,7 +13,7 @@
 <body>
     <div class="container mt-5">
 
-        <form action="{{ route('instructor.store') }}" method="POST">
+        <form action="{{ route('instructor.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
@@ -64,7 +64,8 @@
 
             <div class="form-group">
                 <label for="gambar">Upload Gambar</label>
-                <input type="file" class="form-control" id="gambar" name="gambar">
+                <input type="file" class="form-control" id="gambar" name="gambar"
+                    value="{{ old('gambar', $data->gambar ?? '') }}">
                 @error('gambar')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror

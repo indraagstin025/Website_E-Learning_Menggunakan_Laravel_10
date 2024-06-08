@@ -1,0 +1,65 @@
+/* Light mode styles */
+body {
+    background-color: #fff;
+    color: #000;
+}
+
+.card {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.btn-dark-mode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* KTP card styles */
+.ktp-card {
+    display: flex;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+.ktp-card img {
+    flex-shrink: 0;
+    margin-right: 1rem;
+    width: 3cm;
+    height: 4cm;
+    object-fit: cover;
+}
+
+.ktp-info {
+    flex-grow: 1;
+}
+
+.ktp-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.ktp-field {
+    margin-bottom: 0.5rem;
+}
+
+.ktp-field span {
+    font-weight: bold;
+}
+
+.actions {
+    margin-top: 1rem;
+}

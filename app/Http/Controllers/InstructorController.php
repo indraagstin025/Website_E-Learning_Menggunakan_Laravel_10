@@ -46,7 +46,8 @@ class InstructorController extends Controller
             'email' => 'required|email|unique:datainstructor,email', // Pastikan email unik
             'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn', // Digits_between for length
             'departemen' => 'required',
-            'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
+            'tanggal_lahir' => 'nullable|date',
+            'gambar' => 'required|image|file|max:1024', // Tanggal lahir opsional
 
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
@@ -58,19 +59,32 @@ class InstructorController extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
+            'gambar.image' => 'Gambar yang di upload harus image',
+            'gambar.file' => 'Gambar harus berupa file',
+            'gambar.max' => 'Ukuran gambar maksimal 1MB',
 
         ]);
 
+        if ($request->hasFile('gambar')) {
+            $gambar_file = $request->file('gambar');
+            $foto_ekstensi = $gambar_file->extension();
+            $nama_foto = date('ymdhis') . "." . $foto_ekstensi;
+            $gambar_file->move(public_path('picture/accounts'), $nama_foto);
+            $gambar = $nama_foto;
+        } else {
+            $gambar = "user.jpeg";
+        }
+
 
         $user_id = Auth::id();
-        $datainstructor = DataInstructor::create([
+        DataInstructor::create([
             'user_id' => $user_id,
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
-
+            'gambar' => $gambar,
 
 
         ]);

@@ -1,41 +1,14 @@
 @extends('halaman_dashboard.index')
 @section('navitem')
 <!-- Divider -->
-<hr class="sidebar-divider my-0" style="border-color: black;"">
 
+<hr class="sidebar-divider d-none d-md-block" style="border-color: black;">
     <!-- Nav Item - Dashboard -->
     <li class=" nav-item active">
 <a class="nav-link" href="/admin" style="color: black;">
     <i class="fas fa-fw fa-tachometer-alt" style="color: black;"></i>
     <span>Dashboard</span></a>
 </li>
-
-<!-- Divider -->
-<hr class="sidebar-divider" style="border-color: black;">
-
-
-<!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true"
-        aria-controls="collapseUtilities" style="color: black;">
-        <i class="fas fa-fw fa-wrench" style="color: black;"></i>
-        <span>Utilities</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header" style="color: black;">Custom Utilities:</h6>
-            <a class="collapse-item" href="{{ route('usercontrol') }}" style="color: black;">User Control</a>
-        </div>
-    </div>
-</li>
-
-<!-- Divider -->
-<hr class="sidebar-divider" style="color: black;">
-
-<!-- Heading -->
-<div class="sidebar-heading" style="color: black;">
-    Addons
-</div>
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
@@ -55,14 +28,10 @@
     </div>
 </li>
 
-
-
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block" style="color: black;">
-
+<hr class="sidebar-divider d-none d-md-block" style="border-color: black;">
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle" style="color: black;"></button>
+    <button class="rounded-circle border-0" id="sidebarToggle" style="background-color: black;"></button>
 </div>
 @endsection
 @section('main')
@@ -84,7 +53,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                {{ Auth::user()->email }}</div>
+                                {{ Auth::user()->fullname }}</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 {{ Auth::user()->role }}</div>
                         </div>

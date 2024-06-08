@@ -2,216 +2,87 @@
 @extends('halaman_dashboard.index')
 @if (Auth::user()->role === 'admin')
     @section('navitem')
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+          <!-- Divider -->
+              
+          <hr class="sidebar-divider d-none d-md-block" style="border-color: black;">
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/admin">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+            <a class="nav-link" href="/admin" style="color:black;">
+                <i class="fas fa-fw fa-tachometer-alt" style="color:black;"></i>
                 <span>Dashboard</span></a>
         </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="{{ route('usercontrol') }}">User Control</a>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Addons
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
+                aria-expanded="true" aria-controls="collapsePages" style="color:black;">
+                <i class="fas fa-fw fa-folder" style="color:black;"></i>
                 <span>Pages</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                    <h6 class="collapse-header" style="color:black;">Login Screens:</h6>
+                    <a class="collapse-item" href="{{ route('datainstructor') }}" style="color:black;">Data Instructor</a>
+                    <a class="collapse-item" href="{{ route('datamahasiswa') }}" style="color:black;">Data Mahasiswa</a>
                 </div>
             </div>
         </li>
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+       
+        <hr class="sidebar-divider d-none d-md-block" style="border-color: black;">
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle" style="background-color: black;"></button>
+</div>
     @endsection
 @elseif(Auth::user()->role === 'user')
     @section('navitem')
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
+
+    <hr class="sidebar-divider my-0" style="color:black;" >
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item active" >
             <a class="nav-link" href="/user">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                <i class="fas fa-fw fa-tachometer-alt" style="color:black;"></i>
+                <span style="color:black;">Dashboard</span></a>
         </li>
+     <hr class="sidebar-divider" style="color:black;">
 
+        
+
+        
         <!-- Divider -->
-        <hr class="sidebar-divider">
+       
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Interface
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Components</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
+        <div class="sidebar-heading" style="color:black;">
             Addons
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
+        <li class="nav-item" style="color:black;">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Pages</span>
+                aria-expanded="true" aria-controls="collapsePages" style="color:black;">
+                <i class="fas fa-fw fa-folder" style="color:black;"></i>
+                <span style="color:black;">Pages</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    <div class="collapse-divider"></div>
-                    <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                <div class="bg-white py-2 collapse-inner rounded" style="color:black;">
+                    <h6 class="collapse-header" style="color:black;">Login Screens:</h6>
+                    <a class="collapse-item" href="{{ route('datamahasiswa') }}" style="color:black;">Data Mahasiswa</a>
+                    <a class="collapse-item" href="{{ route('datamateri') }}" style="color: black;">Daftar Materi</a>
                 </div>
             </div>
         </li>
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Charts</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
+       
+       
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider d-none d-md-block" style="color:black;">
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <button class="rounded-circle border-0" id="sidebarToggle" style="color:black;"></button>
         </div>
     @endsection
 @endif
@@ -221,14 +92,13 @@
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Data Mahasiswa</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p>
+        
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary mb-4">Data Mahasiswa</h6>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/user'">Dashboard</button>
 
                 {{-- new --}}
                 @if ( $isAdmin = Auth::user()->role === 'admin')
@@ -258,63 +128,47 @@
             </div>
             @endif
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Gambar</th>
-                                <th>Nama Lengkap</th>
-                                <th>Email</th>
-                                <th>Nim</th>
-                                <th>Angkatan</th>
-                                <th>Jurusan</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Gambar</th>
-                                <th>Nama Lengkap</th>
-                                <th>Email</th>
-                                <th>Nim</th>
-                                <th>Angkatan</th>
-                                <th>Jurusan</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            @foreach ($data as $item)
-                                <tr>
-                                    <td class="py-1">
-                                        <img src="{{ asset('picture/accounts') }}/{{ $item->gambar }}" alt="image" height="50"
-                                            width="50" />
-                                    </td>
-                                    <td>{{ $item->nama_lengkap }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->nim }}</td>
-                                    <td>{{ $item->angkatan }}</td>
-                                    <td>{{ $item->jurusan }}</td>
-                                    <td>{{ $item->tanggal_lahir }}</td>
-
-                                    <td><a href="/damaedit/{{ $item->id }}"
-                                            class="btn-sm btn-warning text-decoration-none">Edit</a> |
-                                            @if ( $isAdmin = Auth::user()->role === 'admin')
-                                        <form onsubmit="return confirmHapus(event)"
-                                            action="/damahapus/{{ $item->id }}" method="post" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn-sm btn-danger">Hapus</button>
-                                        </form>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                @foreach ($data as $item)
+                    <div class="card mb-1">
+                        <div class="card-body p-4 d-flex flex-column flex-md-row align-items-start"> 
+                            <img src="{{ asset('picture/accounts/' . $item->gambar) }}" alt="image" class="img-thumbnail rounded mr-3 mb-3 mb-md-0" style="width: 120px; height: 160px;">
+                            <div class="w-100" style="font-family: Arial, sans-serif; font-size: 10pt;">
+                                <dl class="row">
+                                    <dt class="col-md-4">Nama:</dt>
+                                    <dd class="col-md-8">{{ $item->nama_lengkap }}</dd>
+            
+                                    <dt class="col-md-4">Email:</dt>
+                                    <dd class="col-md-8">{{ $item->email }}</dd>
+            
+                                    <dt class="col-md-4">NIDN:</dt>
+                                    <dd class="col-md-8">{{ $item->nim }}</dd>
+            
+                                    <dt class="col-md-4">Angkatan:</dt>
+                                    <dd class="col-md-8">{{ $item->angkatan }}</dd>
+            
+                                    <dt class="col-md-4">Jurusan:</dt>
+                                    <dd class="col-md-8">{{ $item->jurusan }}</dd>
+            
+                                    <dt class="col-md-4">Tanggal Lahir:</dt>
+                                    <dd class="col-md-8">{{ $item->tanggal_lahir }}</dd>
+                                </dl>
+                            </div>
+            
+                            <div class="mt-2 mt-md-0 ml-md-auto"> <div class="d-flex flex-column flex-md-row align-items-md-end">
+                                <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm mb-2 mb-md-0 mr-md-2">Edit</a>
+                                @if (Auth::user()->role === 'admin')
+                                    <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
+            
         </div>
 
     </div>
@@ -343,3 +197,7 @@
         });
     }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arial&family=Courier+New&display=swap" rel="stylesheet">
+

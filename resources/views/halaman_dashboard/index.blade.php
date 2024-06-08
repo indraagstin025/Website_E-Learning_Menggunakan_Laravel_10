@@ -19,7 +19,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-
+        <link href="{{ asset('resources/css/styles.css') }}" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{ asset('halaman_dashboard/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('halaman_dashboard/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
@@ -33,7 +33,7 @@
     <!-- Sidebar -->
     <ul class="navbar-nav  sidebar sidebar sidebar-dark accordion" id="accordionSidebar" style="color: black;">
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/" style="color: black;">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" style="color: black;">
 
             <div class="sidebar-brand-text text-center" style="font-size: 13px; color: black;">
                 <div>Learning Management</div>
@@ -57,9 +57,8 @@
                 </button>
 
 
-
-
                 <!-- Topbar Navbar -->
+                
                 <ul class="navbar-nav ml-auto">
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
@@ -179,7 +178,7 @@
 
 
 
-
+<script src="{{ asset('resources/js/dark-mode.js') }}"></script>
 </body>
 
 </html>

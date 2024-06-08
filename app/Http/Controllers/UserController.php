@@ -32,12 +32,12 @@ class UserController extends Controller
             return redirect()->route('datamahasiswa')->with('message', 'Data instructor sudah diisi.');
         } else {
             return view('user.user_mahasiswa_form', compact('isAdmin'));
-        };
+        }
     }
 
     public function storeMahasiswa(Request $request)
     {
-        // 1. Validasi Data
+        // Validasi Data
         $request->validate([
             'nama_lengkap' => 'required|min:3',
             'email' => 'required|email|unique:datamahasiswa,email',
@@ -45,6 +45,7 @@ class UserController extends Controller
             'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
             'tanggal_lahir' => 'nullable|date',
+            'gambar' => 'required|image|file|max:1024',
         ], [
             'nama_lengkap.required' => 'Nama wajib diisi',
             'nama_lengkap.min' => 'Nama minimal harus 3 karakter',
@@ -58,7 +59,21 @@ class UserController extends Controller
             'angkatan.digits' => 'Angkatan harus berupa 4 digit angka',
             'jurusan.required' => 'Jurusan wajib diisi',
             'tanggal_lahir.date' => 'Format Tanggal Lahir tidak valid',
+            'gambar.required' => 'Gambar wajib di upload',
+            'gambar.image' => 'Gambar yang di upload harus image',
+            'gambar.file' => 'Gambar harus berupa file',
+            'gambar.max' => 'Ukuran gambar maksimal 1MB',
         ]);
+
+        if ($request->hasFile('gambar')) {
+            $gambar_file = $request->file('gambar');
+            $foto_ekstensi = $gambar_file->extension();
+            $nama_foto = date('ymdhis') . "." . $foto_ekstensi;
+            $gambar_file->move(public_path('picture/accounts'), $nama_foto);
+            $gambar = $nama_foto;
+        } else {
+            $gambar = "user.jpeg";
+        }
 
         $user_id = Auth::id();
         DataMahasiswa::create([
@@ -69,6 +84,7 @@ class UserController extends Controller
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'gambar' => $gambar,
         ]);
 
         return redirect()->route('datamahasiswa')->with('success', 'Data mahasiswa berhasil ditambahkan!');

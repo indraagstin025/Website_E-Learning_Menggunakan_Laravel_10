@@ -222,10 +222,12 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Data Instructor</h1>
         
+        
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary mb-4">Data Instructor</h6>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/user'">Dashboard</button>
         
                 @if ( $isAdmin = Auth::user()->role === 'admin')
                 <a href="/tambahdatainstructor" class="btn btn-primary btn-sm">Tambah Data</a>
@@ -256,37 +258,46 @@
             </div>
             <div class="card-body">
                 @foreach ($data as $item)
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <td class="py-1">
-                                <img src="{{ asset('picture/accounts/' . $item->gambar) }}" alt="image" height="50" width="50" />
-
-                            </td>
-                            
-                                    <p class="card-text"><strong>Nama: </strong>{{ $item->nama_lengkap }}</p>
-                                    <p class="card-text"><strong>Email:</strong> {{ $item->email }}</p>
-                                    <p class="card-text"><strong>NIDN:</strong> {{ $item->nidn }}</p>
-                                    <p class="card-text"><strong>Departemen:</strong> {{ $item->departemen }}</p>
-                                    <p class="card-text"><strong>Tanggal Lahir:</strong> {{ $item->tanggal_lahir }}</p>
-                                    <div class="mt-2">
-                                        <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm">Edit</a>
-                                        @if (Auth::user()->role === 'admin')
-                                            <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
-                                        @endif
-                                    </div>
-                                </div>
+                    <div class="card mb-1">
+                        <div class="card-body p-4 d-flex flex-column flex-md-row align-items-start"> 
+                            <img src="{{ asset('picture/accounts/' . $item->gambar) }}" alt="image" class="img-thumbnail rounded mr-3 mb-3 mb-md-0" style="width: 120px; height: 160px;">
+                            <div class="w-100" style="font-family: Arial, sans-serif; font-size: 10pt;">
+                                <dl class="row">
+                                    <dt class="col-md-4">Nama:</dt>
+                                    <dd class="col-md-8">{{ $item->nama_lengkap }}</dd>
+            
+                                    <dt class="col-md-4">Email:</dt>
+                                    <dd class="col-md-8">{{ $item->email }}</dd>
+            
+                                    <dt class="col-md-4">NIDN:</dt>
+                                    <dd class="col-md-8">{{ $item->nidn }}</dd>
+            
+                                    <dt class="col-md-4">Departemen:</dt>
+                                    <dd class="col-md-8">{{ $item->departemen }}</dd>
+            
+                                    <dt class="col-md-4">Tanggal Lahir:</dt>
+                                    <dd class="col-md-8">{{ $item->tanggal_lahir }}</dd>
+                                </dl>
+                            </div>
+            
+                            <div class="mt-2 mt-md-0 ml-md-auto"> <div class="d-flex flex-column flex-md-row align-items-md-end">
+                                <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm mb-2 mb-md-0 mr-md-2">Edit</a>
+                                @if (Auth::user()->role === 'admin')
+                                    <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
             
+                  
         </div>
-        
+    </div>     
     <!-- /.container-fluid -->
 @endsection
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

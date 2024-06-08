@@ -265,7 +265,7 @@
                             <label for="gambar"
                                 style="margin-bottom: 10px; font-size: 16 pt; color: #666666;">Gambar</label>
                             <input class="input100" type="file" name="gambar" id="gambar"
-                                style="margin-left: -40px;">
+                                style="margin-left: -40px;" value="{{ $data->gambar }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary me-2">Edit</button>
                         <a href="/datamahasiswa" class="btn btn-light">Kembali</a>
