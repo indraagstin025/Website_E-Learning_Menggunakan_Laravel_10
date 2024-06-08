@@ -17,5 +17,6 @@ class DataMahasiswa extends Model
         'angkatan',
         'jurusan',
         'tanggal_lahir',
+        'gambar',
     ];
 }

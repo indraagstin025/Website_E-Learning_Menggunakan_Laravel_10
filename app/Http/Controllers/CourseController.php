@@ -62,7 +62,7 @@ class CourseController extends Controller
     function datamateri()
     {
         $data = Course::all();
-        return view('index', compact('data'));
+        return view('data_materi.index', compact('data'));
     }
 
     function download(Request $request, $file)
@@ -108,5 +108,10 @@ class CourseController extends Controller
         } else {
             return redirect()->back()->with('error', 'Course Not Found');
         }
+    }
+
+    public function edit($id)
+    {
+        return view('data_materi.edit', ['course' => Course::find($id)]);
     }
 }

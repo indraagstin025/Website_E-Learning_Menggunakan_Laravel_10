@@ -262,6 +262,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Gambar</th>
                                 <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Nim</th>
@@ -273,6 +274,7 @@
                         </thead>
                         <tfoot>
                             <tr>
+                                <th>Gambar</th>
                                 <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Nim</th>
@@ -285,6 +287,10 @@
                         <tbody>
                             @foreach ($data as $item)
                                 <tr>
+                                    <td class="py-1">
+                                        <img src="{{ asset('picture/accounts') }}/{{ $item->gambar }}" alt="image" height="50"
+                                            width="50" />
+                                    </td>
                                     <td>{{ $item->nama_lengkap }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->nim }}</td>

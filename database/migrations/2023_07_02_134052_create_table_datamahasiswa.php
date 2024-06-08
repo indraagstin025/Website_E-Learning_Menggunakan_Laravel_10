@@ -20,6 +20,7 @@ return new class extends Migration
             $table->year('angkatan');
             $table->string('jurusan');
             $table->date('tanggal_lahir')->nullable();
+            $table->string('gambar');
             $table->timestamps();
         });
     }

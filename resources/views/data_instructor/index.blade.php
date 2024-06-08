@@ -254,30 +254,37 @@
                 </script>
                 @endif
             </div>
-        
             <div class="card-body">
                 @foreach ($data as $item)
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <p class="card-text"><strong>Nama: </strong>{{ $item->nama_lengkap }}</p>
-                        <p class="card-text"><strong>Email:</strong> {{ $item->email }}</p>
-                        <p class="card-text"><strong>NIDN:</strong> {{ $item->nidn }}</p>
-                        <p class="card-text"><strong>Departemen:</strong> {{ $item->departemen }}</p>
-                        <p class="card-text"><strong>Tanggal Lahir:</strong> {{ $item->tanggal_lahir }}</p>
-                        <div class="mt-2">
-                            <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm">Edit</a>
-                            @if ( $isAdmin = Auth::user()->role === 'admin')
-                            <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                            </form>
-                            @endif
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <td class="py-1">
+                                <img src="{{ asset('picture/accounts/' . $item->gambar) }}" alt="image" height="50" width="50" />
+
+                            </td>
+                            
+                                    <p class="card-text"><strong>Nama: </strong>{{ $item->nama_lengkap }}</p>
+                                    <p class="card-text"><strong>Email:</strong> {{ $item->email }}</p>
+                                    <p class="card-text"><strong>NIDN:</strong> {{ $item->nidn }}</p>
+                                    <p class="card-text"><strong>Departemen:</strong> {{ $item->departemen }}</p>
+                                    <p class="card-text"><strong>Tanggal Lahir:</strong> {{ $item->tanggal_lahir }}</p>
+                                    <div class="mt-2">
+                                        <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm">Edit</a>
+                                        @if (Auth::user()->role === 'admin')
+                                            <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
+            
         </div>
         
     <!-- /.container-fluid -->

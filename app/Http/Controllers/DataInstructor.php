@@ -65,6 +65,7 @@ class DataInstructor extends Controller
             'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn',
             'departemen' => 'required',
             'tanggal_lahir' => 'nullable|date',
+            'gambar' => 'required|image|file',
 
         ], [
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
@@ -76,8 +77,25 @@ class DataInstructor extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
+            'gambar.required' => 'Gambar wajib di upload',
+            'gambar.image' => 'Gambar yang di upload harus image',
+            'gambar.file' => 'Gambar harus berupa file',
+
 
         ]);
+
+        if ($request->hasFile('gambar')) {
+
+            $request->validate(['gambar' => 'mimes:jpeg,jpg,png,gif|image|file|max:1024']);
+
+            $gambar_file = $request->file('gambar');
+            $foto_ekstensi = $gambar_file->extension();
+            $nama_foto = date('ymdhis') . "." . $foto_ekstensi;
+            $gambar_file->move(public_path('picture/accounts'), $nama_foto);
+            $gambar = $nama_foto;
+        } else {
+            $gambar = "user.jpeg";
+        }
         $user_id = Auth::id();
         ModelsDataInstructor::create([
             'user_id' => $user_id,
@@ -86,6 +104,7 @@ class DataInstructor extends Controller
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'gambar' => $gambar,
 
 
         ]);
@@ -96,14 +115,16 @@ class DataInstructor extends Controller
     }
     function change(Request $request, DataInstructor $datainstructor)
     {
+       
         $request->validate([
             'nama_lengkap' => 'required|min:3',
             'email' => 'required|email|unique:datainstructor,email,' . $request->id,
             'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn,' . $request->id,
             'departemen' => 'required',
-            'tanggal_lahir' => 'nullable|date', // Tanggal lahir opsional
+            'tanggal_lahir' => 'nullable|date', 
+           
 
-        ], [
+        ], [ 
             'nama_lengkap.required' => 'Nama lengkap wajib diisi',
             'nama_lengkap.min' => 'Nama lengkap minimal harus 3 karakter',
             'email.required' => 'Email wajib diisi',
@@ -113,17 +134,33 @@ class DataInstructor extends Controller
             'nidn.digits_between' => 'NIDN harus terdiri dari 1-10 digit',
             'departemen.required' => 'Departemen wajib diisi',
             'tanggal_lahir.date' => 'Format tanggal lahir tidak valid',
+            
 
         ]);
 
         $datainstructor = ModelsDataInstructor::find($request->id);
+        if ($request->hasFile('gambar')) {
+
+            $request->validate(['gambar' => 'mimes:jpeg,jpg,png,gif|image|file|max:1024']);
+
+            $gambar_file = $request->file('gambar');
+            $foto_ekstensi = $gambar_file->extension();
+            $nama_foto = date('ymdhis') . "." . $foto_ekstensi;
+            $gambar_file->move(public_path('picture/accounts'), $nama_foto);
+            $gambar = $nama_foto;
+        } else {
+            $gambar = "user.jpeg";
+        }
+        $user_id = Auth::id();
         $datainstructor->update([
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'gambar' => $datainstructor->gambar,
         ]);
+
 
         Session::flash('success', 'Berhasil Mengubah Data');
 

@@ -16,6 +16,7 @@ class DataInstructor extends Model
         'nidn',
         'departemen',
         'tanggal_lahir',
+        'gambar',
        
        
     ];

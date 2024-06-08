@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('nidn')->length(10)->default(0);
             $table->string('departemen');
             $table->date('tanggal_lahir')->nullable();
+            $table->string('gambar');
             $table->timestamps();
         });
     }

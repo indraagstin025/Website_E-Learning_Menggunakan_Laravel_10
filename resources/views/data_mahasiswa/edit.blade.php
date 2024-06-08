@@ -261,6 +261,12 @@
                             <input type="date" class="tanggal_lahir" id="tanggal_lahir" name="tanggal_lahir"
                                 value="{{  $data->tanggal_lahir }}" required>
                         </div>
+                        <div style="margin : 20px 20px 40px 20px;">
+                            <label for="gambar"
+                                style="margin-bottom: 10px; font-size: 16 pt; color: #666666;">Gambar</label>
+                            <input class="input100" type="file" name="gambar" id="gambar"
+                                style="margin-left: -40px;">
+                        </div>
                         <button type="submit" class="btn btn-primary me-2">Edit</button>
                         <a href="/datamahasiswa" class="btn btn-light">Kembali</a>
                     </form>

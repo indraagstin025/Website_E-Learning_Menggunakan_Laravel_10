@@ -2,7 +2,7 @@
 @if (Auth::user()->role === 'admin')
     @section('navitem')
         <!-- Divider -->
-        <hr class="sidebar-divider my-0" >
+        <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
@@ -72,7 +72,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datainstructor') }}">Data Instructor</a>
+                    <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
                     <a class="collapse-item" href="login.html">Login</a>
                     <a class="collapse-item" href="register.html">Register</a>
                     <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
@@ -106,7 +106,7 @@
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     @endsection
-@elseif(Auth::user()->role === 'instructor')
+@elseif(Auth::user()->role === 'user')
     @section('navitem')
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
@@ -145,12 +145,12 @@
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                aria-expanded="true" aria-controls="collapseUtilities" style="color:black;">
+                aria-expanded="true" aria-controls="collapseUtilities">
                 <i class="fas fa-fw fa-wrench"></i>
                 <span>Utilities</span>
             </a>
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                data-parent="#accordionSidebar" style="color:black;">
+                data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Custom Utilities:</h6>
                     <a class="collapse-item" href="utilities-color.html">Colors</a>
@@ -170,16 +170,16 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item" style="color:black;">
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                aria-expanded="true" aria-controls="collapsePages" style="color:black;">
-                <i class="fas fa-fw fa-folder" style="color:black;"></i>
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
                 <span>Pages</span>
             </a>
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar" style="color:black;">
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="{{ route('datainstructor') }}">Data Instructor</a>
+                    <a class="collapse-item" href="{{ route('datamahasiswa') }}">Data Mahasiswa</a>
                     <a class="collapse-item" href="login.html">Login</a>
                     <a class="collapse-item" href="register.html">Register</a>
                     <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
@@ -218,7 +218,7 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Edit data Instructor</h4>
+                <h4 class="card-title mb-4"> Materi</h4>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -228,49 +228,26 @@
                         </ul>
                     </div>
                 @endif
-                    <form class="forms-sample" method="POST" action="/editdatainstructor">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $data->id }}">
-                        <div class="form-group">
-                            <label for="nama_lengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
-                                value="{{ $data->nama_lengkap }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" name="email"
-                                value="{{ $data->email }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="nidn">NIDN</label>
-                            <input type="number" class="form-control" id="nidn" name="nidn"
-                                value="{{ $data->nidn }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="departemen">Departemen</label>
-                            <input type="text" class="form-control" id="departemen" name="departemen"
-                                value="{{ $data->departemen }}" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"
-                                value="{{ $data->tanggal_lahir }}" required>
-                        </div>
-
-                        <div style="margin : 20px 20px 40px 20px;">
-                            <label for="gambar"
-                                style="margin-bottom: 10px; font-size: 16 pt; color: #666666;">Gambar</label>
-                            <input class="input100" type="file" name="gambar" id="gambar"
-                                style="margin-left: -40px;" value="{{ $data->gambar }}" required>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary me-2">Edit</button>
-                        <a href="/datainstructor" class="btn btn-light">Kembali</a>
-                    </form>
+                <form class="forms-sample" method="POST" action="{{ url('uploadmateri') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nama">Name</label>
+                        <input type="text" class="form-control" id="nama" placeholder="Nama Materi"
+                            name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <input type="text" class="form-control" id="deskripsi" placeholder="Deskripsi Materi"
+                            name="deskripsi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="file">File</label>
+                        <input type="file" class="form-control" id="file" name="file"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Tambah</button>
+                    <a href="/materiedit" class="btn btn-light">Kembali</a>
+                </form>
             </div>
         </div>
     </div>

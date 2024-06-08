@@ -64,6 +64,7 @@ class DataMahasiswa extends Controller
             'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
             'tanggal_lahir' => 'nullable|date',
+            'gambar' => 'required|image|file',
         ], [
             'nama_lengkap.required' => 'Name Wajib Di isi',
             'nama_lengkap.min' => 'Bidang name minimal harus 3 karakter.',
@@ -77,7 +78,24 @@ class DataMahasiswa extends Controller
             'angkatan.digits' => 'Masukan tahun angkatan 4 digit, misal: 2022',
             'jurusan.required' => 'Jurusan Wajib Di isi',
             'tanggal_lahir.date' => 'Format Tanggal Lahir Invalid',
+            'gambar.required' => 'Gambar wajib di upload',
+            'gambar.image' => 'Gambar yang di upload harus image',
+            'gambar.file' => 'Gambar harus berupa file',
         ]);
+
+
+        if ($request->hasFile('gambar')) {
+
+            $request->validate(['gambar' => 'mimes:jpeg,jpg,png,gif|image|file|max:1024']);
+
+            $gambar_file = $request->file('gambar');
+            $foto_ekstensi = $gambar_file->extension();
+            $nama_foto = date('ymdhis') . "." . $foto_ekstensi;
+            $gambar_file->move(public_path('picture/accounts'), $nama_foto);
+            $gambar = $nama_foto;
+        } else {
+            $gambar = "user.jpeg";
+        }
         $user_id = Auth::id();
         ModelsDataMahasiswa::create([
             'user_id' => auth()->user()->id,
@@ -87,6 +105,7 @@ class DataMahasiswa extends Controller
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'gambar' => $gambar,
         ]);
 
 
@@ -118,6 +137,18 @@ class DataMahasiswa extends Controller
         ]);
 
         $datamahasiswa = ModelsDataMahasiswa::find($request->id);
+        if ($request->hasFile('gambar')) {
+
+            $request->validate(['gambar' => 'mimes:jpeg,jpg,png,gif|image|file|max:1024']);
+
+            $gambar_file = $request->file('gambar');
+            $foto_ekstensi = $gambar_file->extension();
+            $nama_foto = date('ymdhis') . "." . $foto_ekstensi;
+            $gambar_file->move(public_path('picture/accounts'), $nama_foto);
+            $gambar = $nama_foto;
+        } else {
+            $gambar = "user.jpeg";
+        }
         $datamahasiswa->update([
             'nama_lengkap' => $request->nama_lengkap,
             'email' => $request->email,
@@ -125,9 +156,11 @@ class DataMahasiswa extends Controller
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'gambar' => $datamahasiswa->gambar,
         ]);
 
         Session::flash('success', 'Berhasil Mengubah Data');
         return redirect('/datamahasiswa');
+    
     }
 }

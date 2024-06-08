@@ -119,7 +119,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [CourseController::class, 'datamateri']);
         Route::get('/download/{file}', [CourseController::class, 'download']);
         Route::get('/view/{id}', [CourseController::class, 'view']);
-        Route::post('/materihapus/{id}', [CourseController::class, 'hapus']);
+        Route::delete('/materihapus/{id}', [CourseController::class, 'hapus']);
+        Route::get('/materiedit/{id}', [CourseController::class, 'edit']);
         Route::post('/courses/{course}/enroll', [CourseController::class, 'enroll'])->name('courses.enroll');
         Route::post('/courses/{course}/unenroll', [CourseController::class, 'unenroll'])->name('courses.unenroll');
 

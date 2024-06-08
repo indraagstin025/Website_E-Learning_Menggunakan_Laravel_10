@@ -71,7 +71,14 @@
                 @enderror
             </div>
 
-
+            <div class="form-group">
+                <label for="gambar">Upload Gambar</label>
+                <input type="file" class="form-control" id="gambar" name="gambar">
+                @error('gambar')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            
             <button type="submit" class="btn btn-primary">Kirim Data</button>
         </form>
     </div>
