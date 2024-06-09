@@ -122,6 +122,7 @@ class DataInstructor extends Controller
             'nidn' => 'required|numeric|digits_between:1,10|unique:datainstructor,nidn,' . $request->id,
             'departemen' => 'required',
             'tanggal_lahir' => 'nullable|date', 
+            'gambar' => 'nullable|mimes:jpeg,jpg,png,gif|image|file|max:1024'
            
 
         ], [ 
@@ -149,7 +150,7 @@ class DataInstructor extends Controller
             $gambar_file->move(public_path('picture/accounts'), $nama_foto);
             $gambar = $nama_foto;
         } else {
-            $gambar = "user.jpeg";
+            $gambar = $datainstructor->gambar;
         }
         $user_id = Auth::id();
         $datainstructor->update([
@@ -158,7 +159,7 @@ class DataInstructor extends Controller
             'nidn' => $request->nidn,
             'departemen' => $request->departemen,
             'tanggal_lahir' => $request->tanggal_lahir,
-            'gambar' => $datainstructor->gambar,
+            'gambar' => $gambar,
         ]);
 
 

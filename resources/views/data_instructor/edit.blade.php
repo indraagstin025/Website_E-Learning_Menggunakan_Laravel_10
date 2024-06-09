@@ -228,7 +228,7 @@
                         </ul>
                     </div>
                 @endif
-                    <form class="forms-sample" method="POST" action="/editdatainstructor">
+                    <form class="forms-sample" method="POST" action="/editdatainstructor" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
                         <div class="form-group">

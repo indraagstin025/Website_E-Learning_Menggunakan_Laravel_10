@@ -228,7 +228,7 @@
                         </ul>
                     </div>
                 @endif
-                    <form class="forms-sample" method="POST" action="/editdama">
+                    <form class="forms-sample" method="POST" action="/editdama" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{ $data->id }}">
                         <div class="form-group">
@@ -264,7 +264,7 @@
                         <div style="margin : 20px 20px 40px 20px;">
                             <label for="gambar"
                                 style="margin-bottom: 10px; font-size: 16 pt; color: #666666;">Gambar</label>
-                            <input class="input100" type="file" name="gambar" id="gambar"
+                            <input class="gambar" type="file" name="gambar" id="gambar"
                                 style="margin-left: -40px;" value="{{ $data->gambar }}" required>
                         </div>
                         <button type="submit" class="btn btn-primary me-2">Edit</button>

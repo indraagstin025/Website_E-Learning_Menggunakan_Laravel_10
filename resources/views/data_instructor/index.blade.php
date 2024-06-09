@@ -179,32 +179,14 @@
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded" style="color:black;">
-                    <h6 class="collapse-header" style="color:black;">Login Screens:</h6>
+              <h6 class="collapse-header" style="color:black;">Halaman Course</h6>
                     <a class="collapse-item" href="{{ route('datainstructor') }}" style="color:black;">Data Instructor</a>
-                    <a class="collapse-item" href="login.html" style="color:black;">Login</a>
-                    <a class="collapse-item" href="register.html" style="color:black;">Register</a>
-                    <a class="collapse-item" href="forgot-password.html" style="color:black;">Forgot Password</a>
-                    <div class="collapse-divider" style="color:black;"></div>
-                    <h6 class="collapse-header" style="color:black;">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html" style="color:black;">404 Page</a>
-                    <a class="collapse-item" href="blank.html" style="color:black;">Blank Page</a>
+                    <a class="collapse-item" href="{{ route('datamateri') }}" style="color:black;">Daftar Course</a>
+
                 </div>
             </div>
         </li>
 
-        <!-- Nav Item - Charts -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html" style="color:black;">
-                <i class="fas fa-fw fa-chart-area" style="color:black;"></i>
-                <span style="color:black;">Charts</span></a>
-        </li>
-
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html" style="color:black;">
-                <i class="fas fa-fw fa-table" style="color:black;"></i>
-                <span style="color:black;">Tables</span></a>
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" style="color:black;">
@@ -234,7 +216,7 @@
                 @endif
         
                 {{-- Error Handling dan Success Message --}}
-                @if ($errors->any())
+         @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $item)
@@ -242,9 +224,9 @@
                         @endforeach
                     </ul>
                 </div>
-                @endif
+         @endif
         
-                @if (Session::has('success'))
+         @if (Session::has('success'))
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         Swal.fire(
@@ -254,7 +236,7 @@
                         );
                     });
                 </script>
-                @endif
+         @endif
             </div>
             <div class="card-body">
                 @foreach ($data as $item)

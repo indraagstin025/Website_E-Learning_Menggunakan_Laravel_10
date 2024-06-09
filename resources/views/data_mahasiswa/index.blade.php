@@ -93,40 +93,40 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Data Mahasiswa</h1>
         
-
+        
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary mb-4">Data Mahasiswa</h6>
                 <button type="button" class="btn btn-primary" onclick="window.location.href='/user'">Dashboard</button>
-
-                {{-- new --}}
+        
                 @if ( $isAdmin = Auth::user()->role === 'admin')
-                <a href="/damatambah" class="btn-sm btn-primary text-decoration-none">Tambah data</a>
-
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $item)
-                                <li>{{ $item }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <a href="/damatambah" class="btn btn-primary btn-sm">Tambah Data</a>
                 @endif
-            
-                @if (Session::has('success'))
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            Swal.fire(
-                                'Sukses',
-                                '{{ Session::get('success') }}',
-                                'success'
-                            );
-                        });
-                    </script>
-                @endif
+        
+                {{-- Error Handling dan Success Message --}}
+         @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+         @endif
+        
+         @if (Session::has('success'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire(
+                            'Sukses',
+                            '{{ Session::get('success') }}',
+                            'success'
+                        );
+                    });
+                </script>
+         @endif
             </div>
-            @endif
             <div class="card-body">
                 @foreach ($data as $item)
                     <div class="card mb-1">
@@ -140,14 +140,14 @@
                                     <dt class="col-md-4">Email:</dt>
                                     <dd class="col-md-8">{{ $item->email }}</dd>
             
-                                    <dt class="col-md-4">NIDN:</dt>
+                                    <dt class="col-md-4">NIM:</dt>
                                     <dd class="col-md-8">{{ $item->nim }}</dd>
-            
+                                    
                                     <dt class="col-md-4">Angkatan:</dt>
                                     <dd class="col-md-8">{{ $item->angkatan }}</dd>
-            
+
                                     <dt class="col-md-4">Jurusan:</dt>
-                                    <dd class="col-md-8">{{ $item->jurusan }}</dd>
+                                    <dd class="col-md-8">{{ $item->jurusan}}</dd>
             
                                     <dt class="col-md-4">Tanggal Lahir:</dt>
                                     <dd class="col-md-8">{{ $item->tanggal_lahir }}</dd>
@@ -155,9 +155,9 @@
                             </div>
             
                             <div class="mt-2 mt-md-0 ml-md-auto"> <div class="d-flex flex-column flex-md-row align-items-md-end">
-                                <a href="/editdatainstructor/{{ $item->id }}" class="btn btn-warning btn-sm mb-2 mb-md-0 mr-md-2">Edit</a>
+                                <a href="/damaedit/{{ $item->id }}" class="btn btn-warning btn-sm mb-2 mb-md-0 mr-md-2">Edit</a>
                                 @if (Auth::user()->role === 'admin')
-                                    <form onsubmit="return confirmHapus(event)" action="/hapusdatainstructor/{{ $item->id }}" method="post" class="d-inline">
+                                    <form onsubmit="return confirmHapus(event)" action="/damahapus/{{ $item->id }}" method="post" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
@@ -169,9 +169,9 @@
                 @endforeach
             </div>
             
+                  
         </div>
-
-    </div>
+    </div>     
     <!-- /.container-fluid -->
 @endsection
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

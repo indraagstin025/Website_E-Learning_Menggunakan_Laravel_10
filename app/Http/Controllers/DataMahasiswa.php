@@ -121,6 +121,7 @@ class DataMahasiswa extends Controller
             'angkatan' => 'required|digits:4',
             'jurusan' => 'required',
             'tanggal_lahir' => 'nullable|date',
+            'gambar' => 'nullable|mimes:jpeg,jpg,png,gif|image|file|max:1024',
         ], [
             'nama_lengkap.required' => 'Name Wajib Di isi',
             'nama_lengkap.min' => 'Bidang name minimal harus 3 karakter.',
@@ -147,7 +148,7 @@ class DataMahasiswa extends Controller
             $gambar_file->move(public_path('picture/accounts'), $nama_foto);
             $gambar = $nama_foto;
         } else {
-            $gambar = "user.jpeg";
+            $gambar = $datamahasiswa->gambar;
         }
         $datamahasiswa->update([
             'nama_lengkap' => $request->nama_lengkap,
@@ -156,7 +157,7 @@ class DataMahasiswa extends Controller
             'angkatan' => $request->angkatan,
             'jurusan' => $request->jurusan,
             'tanggal_lahir' => $request->tanggal_lahir,
-            'gambar' => $datamahasiswa->gambar,
+            'gambar' => $gambar,
         ]);
 
         Session::flash('success', 'Berhasil Mengubah Data');
