@@ -86,10 +86,7 @@ class InstructorController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'gambar' => $gambar,
 
-
         ]);
-
-
 
         return redirect()->route('datainstructor')->with('success', 'Data mahasiswa berhasil ditambahkan!');
     }

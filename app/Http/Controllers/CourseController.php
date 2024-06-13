@@ -62,7 +62,12 @@ class CourseController extends Controller
     function datamateri()
     {
         $data = Course::all();
-        return view('data_materi.index', compact('data'));
+    
+        $isAdmin = Auth::check() && Auth::user()->role === 'admin';
+        $isInstructor = Auth::check() && Auth::user()->role === 'instructor';
+        $isUser = Auth::check() && Auth::user()->role === 'user';
+    
+        return view('data_materi.index', compact('data', 'isAdmin', 'isInstructor', 'isUser'));
     }
 
     function download(Request $request, $file)
