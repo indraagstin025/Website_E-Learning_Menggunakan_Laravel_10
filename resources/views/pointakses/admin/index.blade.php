@@ -45,8 +45,7 @@
 
     <!-- Content Row -->
     <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- User Info Card -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -64,4 +63,62 @@
                 </div>
             </div>
         </div>
+
+        <!-- Data Mahasiswa Card -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="/datamahasiswa" class="card border-left-primary shadow h-100 py-2" style="text-decoration: none;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Jumlah Mahasiswa</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ $jumlahMahasiswa }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- JUMLAH INSTRUCTOR -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="/datainstructor" class="card border-left-primary shadow h-100 py-2" style="text-decoration: none;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Jumlah Instructor</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                {{ $jumlahInstructor }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+        </a>
+        </div>
+
+        <!-- JUMLAH MATERI -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <a href="/datamateri" class="card border-left-primary shadow h-100 py-2" style="text-decoration: none;">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Materi</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $jumlahMateri }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-book fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+    
         @endsection
